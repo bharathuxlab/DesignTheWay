@@ -163,6 +163,7 @@ body{
   color:white;
   backdrop-filter:blur(18px);
   cursor:pointer;
+  user-select:none;
 }
 
 .minus-btn{
@@ -189,8 +190,6 @@ body{
   gap:8px;
   font-weight:600;
 }
-
-
 
 .status-dot{
   width:10px;
@@ -281,12 +280,69 @@ body{
   width:48px;height:48px;border-radius:50%;background:#000;color:white;
   display:flex;justify-content:center;align-items:center;font-weight:700;
 }
+
+/* POPUP - Orange gradient glassmorphism (less muted) */
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.45);
+  z-index:1000;
+}
+
+.popup{
+  width:380px;
+  max-width:92%;
+  padding:28px;
+  border-radius:20px;
+  background: linear-gradient(135deg, rgba(255,160,120,0.22), rgba(255,110,60,0.22));
+  box-shadow: 0 14px 50px rgba(0,0,0,0.30);
+  backdrop-filter: blur(14px) saturate(1.05);
+  color: #fff;
+  transform: translateY(10px) scale(0.98);
+  opacity: 0;
+  transition: transform .24s ease, opacity .24s ease;
+  text-align:center;
+}
+
+.popup-overlay.show{ display:flex; }
+.popup-overlay.show .popup{ transform: translateY(0) scale(1); opacity:1; }
+
+.popup .line{
+  font-size:20px;
+  margin:10px 0;
+  font-weight:600;
+  color:#fff;
+  text-decoration:underline;
+}
+
+/* small responsive tweak */
+@media (max-width:640px){
+  .container{ padding-left:24px; margin-left:24px; margin-top:90px;}
+  .logo{font-size:56px;}
+  .card{min-width:360px; max-width:360px; padding:28px;}
+  .intro-title{margin-bottom:160px;}
+  .plus-btn,.minus-btn{width:52px;height:52px;font-size:30px;right:20px;bottom:20px;}
+}
 </style>
 </head>
 
 <body>
 
-<audio id="unlocked" src="click.mp3"></audio>
+<!-- single click sound audio -->
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
+<!-- Popup Overlay (email + phone only, clickable) -->
+<div class="popup-overlay" id="popupOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="popup" role="document" aria-labelledby="popupTitle">
+    <div id="popupTitle" style="font-weight:700;font-size:18px;margin-bottom:8px;">Contact</div>
+    <!-- DIRECT LINES: no labels, no icons -->
+    <a class="line" href="mailto:bharathuxdesigner@gmail.com">bharathuxdesigner@gmail.com</a>
+    <a class="line" href="tel:+918247679545">+91 82476 79545</a>
+  </div>
+</div>
 
 <div class="header">
   <div class="logo">bharath.</div>
@@ -295,11 +351,11 @@ body{
 <div class="container">
 
   <!-- INTRO FLIP CARD -->
-  <div class="card flip-card intro-card">
+  <div class="card flip-card intro-card" aria-live="polite">
     <div class="flip-inner">
 
       <!-- FRONT SIDE -->
-      <div class="flip-front">
+      <div class="flip-front" aria-hidden="false">
         <div class="intro-title">
           Bharath Salla is an independent<br>
           designer working with companies<br>
@@ -307,41 +363,42 @@ body{
         </div>
 
         <div class="intro-links">
-          <a href="https://www.linkedin.com/in/bharath-salla-b4930a399/" target="_blank">LinkedIn</a>
-          <a href="https://docs.google.com/document/d/1P6ihRxO_Kp1Byd029WKtrizdYX-Cx544/edit?usp=sharing" target="_blank">Resume</a>
-          <a href="mailto:bharathuxdeisgner@gmail.com">Contact</a>
+          <a href="https://www.linkedin.com/in/bharath-salla-b4930a399/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://docs.google.com/document/d/1P6ihRxO_Kp1Byd029WKtrizdYX-Cx544/edit?usp=sharing" target="_blank" rel="noreferrer">Resume</a>
+          <!-- contact-trigger opens popup -->
+          <a href="#" class="contact-trigger" data-source="front">Contact</a>
         </div>
 
-        <div class="plus-btn" id="flipToBack">+</div>
+        <div class="plus-btn" id="flipToBack" title="Open details">+</div>
       </div>
 
       <!-- BACK SIDE -->
-<div class="flip-back">
-  <div class="back-text">
+      <div class="flip-back" aria-hidden="true">
+        <div class="back-text">
 Lead Product Designer with 7+ years building B2B tools, analytics platforms, and enterprise workflows across fintech, healthcare, and telecom. 
 I specialize in untangling complex systems—turning rigid processes, dense data tables, and multi-step operations into interfaces that teams actually want to use.
-  </div>
+        </div>
 
-  <div class="status-pill">
-    <div class="status-dot"></div>
-    Available for new work.
-  </div>
+        <div class="status-pill" aria-hidden="false">
+          <div class="status-dot" aria-hidden="true"></div>
+          Available for new work.
+        </div>
 
-  <!-- REAL MAILTO LINK (100% works on all browsers) -->
-  <a class="back-contact" href="mailto:bharathuxdesigner@gmail.com">Contact - bharathuxdesigner@gmail.com</a>
+        <!-- back-contact triggers popup too -->
+        <a class="back-contact contact-trigger" href="#" data-source="back">Contact - bharathuxdesigner@gmail.com</a>
 
-  <div class="minus-btn" id="flipToFront">–</div>
-</div>
+        <div class="minus-btn" id="flipToFront" title="Close details">–</div>
+      </div>
 
     </div>
   </div>
 
   <!-- IMAGE CARD -->
   <div class="card image-card">
-    <img src="mine.jpeg" alt="My Photo">
+    <img src="mine.jpeg" alt="Bharath Salla — photo">
   </div>
 
-  <!-- OTHER CARDS (unchanged) -->
+  <!-- OTHER CARDS (unchanged content, updated figma links) -->
   <div class="card card-2 grid">
     <div class="card-meta">Verizon — Order360 Switch Fallout</div>
     <div class="card-title"><span class="highlight-yellow">Enterprise</span> Operations & Real-time Systems</div>
@@ -352,8 +409,8 @@ I specialize in untangling complex systems—turning rigid processes, dense data
       <span class="skills-label">Skills</span> Dashboard design · Workflow optimization
     </div>
     <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=761-180356">
+      <a class="view-link" target="_blank" rel="noreferrer"
+         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=761-180356&t=vmCrk0jJ3avFzhoH-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1">
         View Case Study
       </a>
       <div class="card-badge">V</div>
@@ -370,8 +427,8 @@ I specialize in untangling complex systems—turning rigid processes, dense data
       <span class="skills-label">Skills</span> AI/ML · Usability testing
     </div>
     <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=1173-180877">
+      <a class="view-link" target="_blank" rel="noreferrer"
+         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=1173-180877&t=5DISdoIhyDoKyE3L-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1">
         View Project
       </a>
       <div class="card-badge">U</div>
@@ -388,8 +445,8 @@ I specialize in untangling complex systems—turning rigid processes, dense data
       <span class="skills-label">Skills</span> Mobile-first · Interaction design
     </div>
     <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=744-122470">
+      <a class="view-link" target="_blank" rel="noreferrer"
+         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=744-122470&t=d85fbExzbRU0fNtQ-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1">
         View Work
       </a>
       <div class="card-badge">H</div>
@@ -406,8 +463,8 @@ I specialize in untangling complex systems—turning rigid processes, dense data
       <span class="skills-label">Skills</span> Information Architecture
     </div>
     <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2503-184255">
+      <a class="view-link" target="_blank" rel="noreferrer"
+         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2503-184255&t=eemNlOdAk3W0hjKs-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1330%3A199755&hide-ui=1">
         Case Study
       </a>
       <div class="card-badge">C</div>
@@ -424,8 +481,8 @@ I specialize in untangling complex systems—turning rigid processes, dense data
       <span class="skills-label">Skills</span> Data Modeling
     </div>
     <div class="card-footer">
-      <a class="view-link" target="_blank"
-        href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2504-288201">
+      <a class="view-link" target="_blank" rel="noreferrer"
+        href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2504-288201&t=N2C3TYsj3eCpOiXN-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1330%3A199755&hide-ui=1">
         Project Link
       </a>
       <div class="card-badge">S</div>
@@ -442,8 +499,8 @@ I specialize in untangling complex systems—turning rigid processes, dense data
       <span class="skills-label">Skills</span> Flow mapping
     </div>
     <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2504-392089">
+      <a class="view-link" target="_blank" rel="noreferrer"
+         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2504-392089&t=ovWIllswiqWIYuuH-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1330%3A199755&hide-ui=1">
         View Project
       </a>
       <div class="card-badge">S</div>
@@ -453,30 +510,91 @@ I specialize in untangling complex systems—turning rigid processes, dense data
 </div>
 
 <script>
-/* audio preload */
-window.addEventListener("load", () => {
-  const unlockAudio = document.getElementById("unlocked");
-  unlockAudio.volume = 0;
-  unlockAudio.play().catch(()=>{});
+/* single click sound audio */
+const clickAudioSrc = 'click.mp3';
+
+function playClick(vol = 1){
+  const fx = new Audio(clickAudioSrc);
+  fx.volume = vol;
+  fx.play().catch(()=>{});
+}
+
+/* attempt to unlock on load */
+window.addEventListener('load', () => {
+  try {
+    const a = document.getElementById('clickSound');
+    if(a){ a.volume = 0.6; a.play().catch(()=>{}); }
+  } catch(e){}
 });
 
-/* hover sound */
-document.querySelectorAll(".card").forEach(card=>{
-  card.addEventListener("pointerenter", ()=>{
-    const fx = new Audio("click.mp3");
-    fx.volume = 1;
-    fx.play().catch(()=>{});
+/* hover sound (light) */
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('pointerenter', ()=> {
+    playClick(0.12);
   });
 });
 
-/* FLIP LOGIC */
-const flipCard = document.querySelector(".flip-card");
-document.getElementById("flipToBack").onclick = () => {
-  flipCard.classList.add("flipped");
-};
-document.getElementById("flipToFront").onclick = () => {
-  flipCard.classList.remove("flipped");
-};
+/* FLIP LOGIC with click sound */
+const flipCard = document.querySelector('.flip-card');
+const flipToBack = document.getElementById('flipToBack');
+const flipToFront = document.getElementById('flipToFront');
+
+if(flipToBack){
+  flipToBack.addEventListener('click', ()=>{
+    flipCard.classList.add('flipped');
+    playClick(1);
+  });
+}
+if(flipToFront){
+  flipToFront.addEventListener('click', ()=>{
+    flipCard.classList.remove('flipped');
+    playClick(1);
+  });
+}
+
+/* POPUP: open when any .contact-trigger is clicked (front or back) */
+const popupOverlay = document.getElementById('popupOverlay');
+const contactTriggers = document.querySelectorAll('.contact-trigger');
+
+function openPopup(){
+  popupOverlay.classList.add('show');
+  popupOverlay.setAttribute('aria-hidden','false');
+  playClick(0.9);
+  // focus first link for keyboard users
+  const firstLink = popupOverlay.querySelector('a');
+  if(firstLink) firstLink.focus();
+}
+
+function closePopup(){
+  popupOverlay.classList.remove('show');
+  popupOverlay.setAttribute('aria-hidden','true');
+  playClick(0.9);
+}
+
+contactTriggers.forEach(el => {
+  el.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    openPopup();
+  });
+});
+
+/* close when clicking overlay (outside popup) */
+popupOverlay.addEventListener('click', (ev) => {
+  if(ev.target === popupOverlay) closePopup();
+});
+
+/* close on ESC key */
+document.addEventListener('keydown', (ev) => {
+  if(ev.key === 'Escape' && popupOverlay.classList.contains('show')) closePopup();
+});
+
+/* Accessibility: close popup if user tabs past last element (optional) */
+/* No explicit close button required per request; overlay/Esc works */
+
+/* Prevent focus outline on mouse click but keep for keyboard */
+document.addEventListener('mousedown', ()=> document.body.classList.add('using-mouse'));
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Tab') document.body.classList.remove('using-mouse'); });
+
 </script>
 
 </body>
