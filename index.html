@@ -11,24 +11,28 @@
 :root{
   --bg:#FF5B2E;
   --card-padding:48px;
-  --card-height:480px;
+  --card-height:520px;
+  --gap:12px;
+  --header-padding-top:48px;
+  --container-left:72px;
+  --container-right:16px;
+  --container-bottom:120px;
 }
 
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
-body{
-  font-family: soehne, sans-serif;
+html, body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background:var(--bg);
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
+  min-height:100vh; /* allow content to determine height if needed */
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 /* HEADER */
 .header{
-  padding:48px 120px 0px;
+  padding:var(--header-padding-top) 120px 0 120px;
 }
 
 .logo{
@@ -39,20 +43,33 @@ body{
   letter-spacing:-2px;
   text-transform:lowercase;
   margin-bottom:56px;
+  line-height:0.9;
 }
 
-/* MAIN LAYOUT */
-.container{
-  flex:1;
+/* MAIN LAYOUT — desktop horizontal scroller */
+.container-wrap {
+  /* ensures the container area fits the viewport height minus header */
+  height: calc(100vh - (var(--header-padding-top) + 56px));
   display:flex;
-  gap:12px;
-  padding:16px 16px 120px 72px;
+  align-items:flex-start;
+  padding-left: var(--container-left);
+  padding-right: var(--container-right);
+  padding-bottom: var(--container-bottom);
+}
+
+/* horizontal scrolling area */
+.container{
+  width:100%;
+  height:100%;
+  display:flex;
+  gap:var(--gap);
   overflow-x:auto;
   overflow-y:hidden;
   scroll-snap-type:x mandatory;
-  margin-top:125px;
-  margin-right:16px;
-  margin-left:100px;
+  align-items:flex-start;
+  padding-top:32px;
+  /* hide scrollbar visually but keep scrollable */
+  scrollbar-width: thin;
 }
 
 /* CARD BASE */
@@ -64,22 +81,25 @@ body{
   display:flex;
   flex-direction:column;
   position:relative;
-  transition:0.2s ease;
+  transition:transform 0.18s ease, box-shadow 0.18s ease;
   overflow:hidden;
   border-radius:24px;
   scroll-snap-align:start;
+  background: rgba(255,255,255,0.04);
 }
 
-/* CARD HOVER */
+/* subtle hover */
 .card:hover{
-  transform:translateY(-6px) scale(1.015);
+  transform:translateY(-6px) scale(1.012);
   box-shadow:0 18px 40px rgba(0,0,0,0.22);
 }
 
 /* ------------ FLIP CARD EXTRA STYLES ------------ */
 .flip-card{
-  perspective:1000px;
+  perspective:1200px;
   padding:0 !important;
+  width:100%;
+  height:85%;
 }
 
 .flip-inner{
@@ -87,7 +107,7 @@ body{
   height:100%;
   position:relative;
   transform-style:preserve-3d;
-  transition:0.6s ease;
+  transition:transform 0.6s cubic-bezier(.2,.9,.2,1);
   border-radius:24px;
 }
 
@@ -98,52 +118,58 @@ body{
 .flip-front,
 .flip-back{
   position:absolute;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
+  -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
   border-radius:24px;
-  padding:48px;
   display:flex;
   flex-direction:column;
+  padding:48px;
+  box-sizing:border-box;
 }
 
+/* front/back visuals */
 .flip-front{
   background:rgba(255,255,255,0.10);
   color:white;
-  backdrop-filter:blur(16px);
+  backdrop-filter: blur(10px) saturate(1.02);
+  -webkit-backdrop-filter: blur(10px) saturate(1.02);
+  z-index:2; /* sits above back by default */
 }
 
 .flip-back{
   background:#F2EBE4;
+  color:#222;
   transform:rotateY(180deg);
-  color:#333;
+  z-index:1;
 }
 
 /* INTRO TEXT */
 .intro-title {
-  font-family: soehne, sans-serif;
   font-size: 24px;
   line-height: 33.6px;
   font-weight: 600;
   color: #ffffff;
-  margin-top: 0px;
+  margin-top: 0;
   margin-bottom: 280px;
 }
 
 .intro-links {
-  display: flex;
-  gap: 32px;
-  position: absolute;
-  bottom: 48px;
-  left: 48px;
+  display:flex;
+  gap:32px;
+  position:absolute;
+  bottom:48px;
+  left:48px;
 }
 
-.intro-links a {
-  font-family: soehne, sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  text-decoration: underline;
-  color: #ffffff;
+.intro-links a{
+  font-size:18px;
+  font-weight:600;
+  text-decoration:underline;
+  color:#fff;
 }
 
 /* PLUS / MINUS BUTTONS */
@@ -161,7 +187,7 @@ body{
   font-size:36px;
   font-weight:700;
   color:white;
-  backdrop-filter:blur(18px);
+  backdrop-filter:blur(12px);
   cursor:pointer;
   user-select:none;
 }
@@ -171,6 +197,7 @@ body{
   color:#333;
 }
 
+/* back text */
 .back-text{
   font-size:18px;
   line-height:1.6;
@@ -178,6 +205,7 @@ body{
   max-width:90%;
 }
 
+/* status pill */
 .status-pill{
   margin-top:24px;
   background:white;
@@ -191,10 +219,7 @@ body{
 }
 
 .status-dot{
-  width:10px;
-  height:10px;
-  background:#27AE60;
-  border-radius:50%;
+  width:10px;height:10px;border-radius:50%;background:#27AE60;
 }
 
 .back-contact{
@@ -310,25 +335,28 @@ body{
   text-decoration:underline;
 }
 
-/* MOBILE */
-@media (max-width:640px){
-  .container{ padding-left:24px; margin-left:24px; margin-top:90px;}
-  .logo{font-size:56px;}
-  .card{min-width:360px; max-width:360px; padding:28px;}
-  .intro-title{margin-bottom:160px;}
-  .plus-btn,.minus-btn{width:52px;height:52px;font-size:30px;right:20px;bottom:20px;}
+/* Desktop only—hide horizontal layout adjustments on narrow screens */
+@media (max-width:1100px){
+  /* small screens fallback: show a single-column stack so nothing breaks */
+  .container-wrap{ height:auto; padding-left:24px; padding-right:24px; }
+  .container{ flex-direction:column; overflow-x:hidden; overflow-y:auto; align-items:stretch; gap:18px; }
+  .card{ min-width:auto; max-width:100%; width:100%; height:auto; padding:28px; }
+  .intro-title{ margin-bottom:20px; color:#fff; }
+  .plus-btn, .minus-btn{ right:20px; bottom:20px; width:52px; height:52px; font-size:30px; }
+  .logo{ font-size:56px; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- optional click sound (play only on user interaction) -->
 <audio id="clickSound" src="click.mp3" preload="auto"></audio>
 
 <!-- Popup -->
-<div class="popup-overlay" id="popupOverlay">
-  <div class="popup">
-    <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Contact</div>
+<div class="popup-overlay" id="popupOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="popup" role="document" aria-labelledby="popupTitle">
+    <div id="popupTitle" style="font-weight:700;font-size:18px;margin-bottom:8px;">Contact</div>
     <a class="line" href="mailto:bharathuxdesigner@gmail.com">bharathuxdesigner@gmail.com</a>
     <a class="line" href="tel:+918247679545">+91 82476 79545</a>
   </div>
@@ -338,210 +366,262 @@ body{
   <div class="logo">bharath.</div>
 </div>
 
-<div class="container">
+<div class="container-wrap">
+  <div class="container" id="cardsContainer">
 
-  <!-- INTRO CARD -->
-  <div class="card flip-card intro-card">
-    <div class="flip-inner">
+    <!-- INTRO FLIP CARD -->
+    <div class="card flip-card intro-card" aria-live="polite">
+      <div class="flip-inner">
 
-      <div class="flip-front">
-        <div class="intro-title">
-          Bharath Salla is an independent<br>
-          designer working with companies<br>
-          at the edge of new frontiers.
+        <!-- FRONT SIDE -->
+        <div class="flip-front" aria-hidden="false">
+          <div class="intro-title">
+            Bharath Salla is an independent<br>
+            designer working with companies<br>
+            at the edge of new frontiers.
+          </div>
+
+          <div class="intro-links">
+            <a href="https://www.linkedin.com/in/bharath-salla-b4930a399/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://docs.google.com/document/d/1P6ihRxO_Kp1Byd029WKtrizdYX-Cx544/edit?usp=sharing" target="_blank" rel="noreferrer">Resume</a>
+            <!-- contact-trigger opens popup -->
+            <a href="#" class="contact-trigger" data-source="front">Contact</a>
+          </div>
+
+          <div class="plus-btn" id="flipToBack" role="button" aria-label="Open details" tabindex="0">+</div>
         </div>
 
-        <div class="intro-links">
-          <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">LinkedIn</a>
-          <a href="https://docs.google.com/document/d/1P6ihRxO_Kp1Byd029WKtrizdYX-Cx544/edit?usp=sharing" target="_blank">Resume</a>
-          <a href="#" class="contact-trigger">Contact</a>
-        </div>
-
-        <div class="plus-btn" id="flipToBack">+</div>
-      </div>
-
-      <div class="flip-back">
-        <div class="back-text">
-Lead Product Designer with 7+ years building B2B tools, analytics platforms, and enterprise workflows across fintech, healthcare, and telecom.
+        <!-- BACK SIDE -->
+        <div class="flip-back" aria-hidden="true">
+          <div class="back-text">
+Lead Product Designer with 7+ years building B2B tools, analytics platforms, and enterprise workflows across fintech, healthcare, and telecom. 
 I specialize in untangling complex systems—turning rigid processes, dense data tables, and multi-step operations into interfaces that teams actually want to use.
+          </div>
+
+          <div class="status-pill" aria-hidden="false">
+            <div class="status-dot" aria-hidden="true"></div>
+            Available for new work.
+          </div>
+
+          <!-- back-contact triggers popup too -->
+          <a class="back-contact contact-trigger" href="#" data-source="back">Contact - bharathuxdesigner@gmail.com</a>
+
+          <div class="minus-btn" id="flipToFront" role="button" aria-label="Close details" tabindex="0">–</div>
         </div>
 
-        <div class="status-pill">
-          <div class="status-dot"></div>
-          Available for new work.
-        </div>
-
-        <a class="back-contact contact-trigger" href="#">Contact - bharathuxdesigner@gmail.com</a>
-
-        <div class="minus-btn" id="flipToFront">–</div>
       </div>
-
     </div>
+
+    <!-- IMAGE CARD -->
+    <div class="card image-card" aria-hidden="false">
+      <img src="mine.jpeg" alt="Bharath Salla — photo">
+    </div>
+
+    <!-- OTHER CARDS (unchanged content) -->
+    <div class="card card-2 grid">
+      <div class="card-meta">Verizon</div>
+      <div class="card-title">B2B Enterprise Software</div>
+      <div class="card-type">Ground-up Rebuild</div>
+      <div class="card-desc">Cut through Verizon’s tangled order-management maze and rebuilt it into a clear, real-time system that exposes stuck orders and accelerates fixes across regions.</div>
+      <div class="divider"></div>
+      <div class="card-skills">
+        <span class="skills-label">Skills</span> User Research · Data Analytics · Data Visualization · Interaction Design
+        <div style="height:8px;"></div>
+        <span class="skills-label">Technologies</span> Design System · Figma · REST API · Real-time Dashboards
+      </div>
+      <div class="card-footer">
+        <a class="view-link" target="_blank" rel="noreferrer"
+           href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=761-180356&t=kpZ1vkPGusXFC9vd-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1">
+          View Case Study
+        </a>
+        <div class="card-badge">V</div>
+      </div>
+    </div>
+
+    <div class="card card-3">
+      <div class="card-meta">UnitedHealth Group</div>
+      <div class="card-title">Healthcare AI & Claims</div>
+      <div class="card-type">New Product</div>
+      <div class="card-desc">Cut through UHC’s overwhelming EOB clutter with instant AI summaries that turn 8-page documents into seconds of clarity.</div>
+      <div class="divider"></div>
+      <div class="card-skills">
+        <span class="skills-label">Skills</span> User Research · Conversational Design · Information Architecture · Usability Testing
+        <div style="height:8px;"></div>
+        <span class="skills-label">Technologies</span> Generative AI · Natural Language Processing · Machine Learning · Chatbot Interface
+      </div>
+      <div class="card-footer">
+        <a class="view-link" target="_blank" rel="noreferrer"
+           href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=1173-180877&t=Lf4Bu586oLxMJqRZ-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1">
+          View Project
+        </a>
+        <div class="card-badge">U</div>
+      </div>
+    </div>
+
+    <div class="card card-4 grid">
+      <div class="card-meta">HDFC Bank</div>
+      <div class="card-title">Fintech & Digital Banking</div>
+      <div class="card-type">Core Overhaul</div>
+      <div class="card-desc">Cut through HDFC Bank’s tangled transfer flow and rebuilt it as a simple 3-step experience used by 120 million customers across APAC.</div>
+      <div class="divider"></div>
+      <div class="card-skills">
+        <span class="skills-label">Skills</span> Competitive analysis · Journey mapping · Empathy mapping · Interaction Design · Data Analytics
+        <div style="height:8px;"></div>
+        <span class="skills-label">Technologies</span> Hotjar · Google Analytics · Zendesk · Agile Tools
+      </div>
+      <div class="card-footer">
+        <a class="view-link" target="_blank" rel="noreferrer"
+           href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=744-122470&t=QasMghCzhOZiyFuN-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1">
+          View Work
+        </a>
+        <div class="card-badge">H</div>
+      </div>
+    </div>
+
+    <div class="card card-5">
+      <div class="card-meta">Clarisights</div>
+      <div class="card-title">Marketing Analytics</div>
+      <div class="card-type">Feature Revamp</div>
+      <div class="card-desc">Overall saved teams 11.7 hours/week (≈76 working days/year) and delivered a 5× ROI for customers like Delivery Hero, HelloFresh, Meesho, AJIO, and BigBasket.</div>
+      <div class="divider"></div>
+      <div class="card-skills">
+        <span class="skills-label">Skills</span> Research · Information Architecture · Prototyping · Usability Testing
+        <div style="height:8px;"></div>
+        <span class="skills-label">Technologies</span> Figma · Analytics · Collaboration Platforms
+      </div>
+      <div class="card-footer">
+        <a class="view-link" target="_blank" rel="noreferrer"
+           href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2503-184255&t=xaQdbtl0kJoxPlD8-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1330%3A199755&show-proto-sidebar=1&hide-ui=1">
+          Case Study
+        </a>
+        <div class="card-badge">C</div>
+      </div>
+    </div>
+
+    <div class="card card-7">
+      <div class="card-meta">SmartBeings</div>
+      <div class="card-title">Voice AI Platform</div>
+      <div class="card-type">Platform Launch</div>
+      <div class="card-desc">Designed Smartbeings’ enterprise conversation builder—turning complex conversational logic into simple, visual, drag-and-drop workflows for real-world use cases.</div>
+      <div class="divider"></div>
+      <div class="card-skills">
+        <span class="skills-label">Skills</span> Conversation Design · Workflow Design · Information Architecture · Prototyping · Multimodal Interaction · Usability Testing
+        <div style="height:8px;"></div>
+        <span class="skills-label">Technologies</span> AI & Voice Tech · LLM · NLP
+      </div>
+      <div class="card-footer">
+        <a class="view-link" target="_blank" rel="noreferrer"
+           href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2504-392089&t=hqDdiz3HQG6akcVJ-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1330%3A199755&hide-ui=1">
+          View Project
+        </a>
+        <div class="card-badge">S</div>
+      </div>
+    </div>
+
   </div>
-
-  <!-- IMAGE CARD -->
-  <div class="card image-card">
-    <img src="mine.jpeg" alt="Bharath Salla — photo">
-  </div>
-
-  <!-- CARD 2 -->
-  <div class="card card-2 grid">
-    <div class="card-meta">Verizon</div>
-    <div class="card-title">B2B Enterprise Software </div>
-    <div class="card-type">Ground-up Rebuild</div>
-    <div class="card-desc">Cut through Verizon’s tangled order-management maze and rebuilt it into a clear, real-time system that exposes stuck orders and accelerates fixes across regions..</div>
-    <div class="divider"></div>
-    <div class="card-skills">
-      <span class="skills-label">Skills</span> User Research · Data Analytics · Data Visualization · Interaction Design
-      <div style="height:8px;"></div>
-          <span class="skills-label">Technologies</span> Design System · Figma · REST API · Real-time Dashboards
-    </div>
-    <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=761-180356&hide-ui=1">
-        View Case Study
-      </a>
-      <div class="card-badge">V</div>
-    </div>
-  </div>
-
-  <!-- CARD 3 -->
-  <div class="card card-3">
-    <div class="card-meta">UnitedHealth Group</div>
-    <div class="card-title">Healthcare AI & Claims</div>
-    <div class="card-type">New Product</div>
-    <div class="card-desc">Cut through UHC’s overwhelming EOB clutter with instant AI summaries that turn 8-page documents into seconds of clarity.</div>
-    <div class="divider"></div>
-    <div class="card-skills">
-      <span class="skills-label">Skills</span> User Research • Conversational Design • Information Architecture • Usability Testing
-       <div style="height:8px;"></div>
-       <span class="skills-label">Technologies</span> Generative AI • Natural Language Processing • Machine Learning • Chatbot Interface
-    </div>
-    <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=1173-180877&hide-ui=1">
-        View Project
-      </a>
-      <div class="card-badge">U</div>
-    </div>
-  </div>
-
-  <!-- CARD 4 -->
-  <div class="card card-4 grid">
-    <div class="card-meta">HDFC Bank </div>
-    <div class="card-title">Fintech & Digital Banking</div>
-    <div class="card-type">Core Overhaul</div>
-    <div class="card-desc">Cut through HDFC Bank’s tangled transfer flow and rebuilt it as a simple 3-step experience used by 120 million customers across APAC.</div>
-    <div class="divider"></div>
-    <div class="card-skills">
-      <span class="skills-label">Skills</span> Competitive analysis • Journey mapping • Empathy - mapping • Interaction Design • Data Analytics
-       <div style="height:8px;"></div>
-         <span class="skills-label">Technologies</span> Hotjar• Google Analytics • Zendesk • Agile Tools
-    </div>
-    <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=744-122470&hide-ui=1">
-        View Work
-      </a>
-      <div class="card-badge">H</div>
-    </div>
-  </div>
-
-  <!-- CARD 5 -->
-  <div class="card card-5">
-    <div class="card-meta">Clarisights</div>
-    <div class="card-title">Marketing Analytics</div>
-    <div class="card-type">Feature Revamp</div>
-    <div class="card-desc">Overall saved teams 11.7 hours/week (≈76 working days/year) and delivered a 5× ROI for customers like Delivery Hero, HelloFresh, Meesho, AJIO, and BigBasket.</div>
-    <div class="divider"></div>
-    <div class="card-skills">
-      <span class="skills-label">Skills</span> Research · Information Architecture · Prototyping · Usability Testing
-      <div style="height:8px;"></div>
-      <span class="skills-label">Technologies</span> Figma · Analytics · Collaboration Platforms
-    </div>
-    <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2503-184255&hide-ui=1">
-        Case Study
-      </a>
-      <div class="card-badge">C</div>
-    </div>
-  </div>
-
-  <!-- CARD 7 (SmartBeings) -->
-  <div class="card card-7">
-    <div class="card-meta">SmartBeings</div>
-    <div class="card-title">Voice AI Platform</div>
-    <div class="card-type">Platform Launch</div>
-    <div class="card-desc">Designed Smartbeings’ enterprise conversation builder—turning complex conversational logic into simple, visual, drag-and-drop workflows for real-world use cases.</div>
-    <div class="divider"></div>
-    <div class="card-skills">
-      <span class="skills-label">Skills</span> Conversation Design · Workflow Design · Information Architecture · Prototyping · Multimodal Interaction · Usability Testing
-      <div style="height:8px;"></div>
-      <span class="skills-label">Technologies</span> AI & Voice Tech · LLM · NLP
-    </div>
-    <div class="card-footer">
-      <a class="view-link" target="_blank"
-         href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2504-392089&hide-ui=1">
-        View Project
-      </a>
-      <div class="card-badge">S</div>
-    </div>
-  </div>
-
 </div>
 
 <script>
+/* Defensive JS — only run if DOM exists */
 const clickAudioSrc = 'click.mp3';
 
+/* play sound only on user interaction to avoid autoplay blocks */
 function playClick(vol = 1){
-  const fx = new Audio(clickAudioSrc);
-  fx.volume = vol;
-  fx.play().catch(()=>{});
+  try {
+    const a = document.getElementById('clickSound');
+    if(!a) return;
+    // ensure audio can play; set volume then play
+    a.volume = Math.min(Math.max(vol, 0), 1);
+    // clone to avoid overlapping issues
+    const fx = a.cloneNode(true);
+    fx.play().catch(()=>{});
+  } catch(e){ /* fail silently */ }
 }
 
-/* unlock */
-window.addEventListener('load', () => {
-  const a = document.getElementById('clickSound');
-  if(a){ a.volume = 0.6; a.play().catch(()=>{}); }
+/* hover sound (light) — attach only if audio exists */
+const cards = document.querySelectorAll ? document.querySelectorAll('.card') : [];
+cards.forEach(card=>{
+  card.addEventListener('pointerenter', ()=> {
+    // light hover sound
+    playClick(0.10);
+  }, {passive:true});
 });
 
-/* hover sound */
-document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('pointerenter', ()=> playClick(0.12));
-});
-
-/* flip logic */
+/* FLIP LOGIC */
 const flipCard = document.querySelector('.flip-card');
-document.getElementById('flipToBack').onclick = () => {
-  flipCard.classList.add('flipped'); playClick(1);
-};
-document.getElementById('flipToFront').onclick = () => {
-  flipCard.classList.remove('flipped'); playClick(1);
-};
+const flipToBack = document.getElementById('flipToBack');
+const flipToFront = document.getElementById('flipToFront');
 
-/* popup */
-const popupOverlay = document.getElementById('popupOverlay');
-document.querySelectorAll('.contact-trigger').forEach(btn => {
-  btn.onclick = (e)=>{
+if(flipCard && flipToBack){
+  flipToBack.addEventListener('click', (e)=>{
     e.preventDefault();
-    popupOverlay.classList.add('show');
+    flipCard.classList.add('flipped');
     playClick(0.9);
-  };
+  });
+  // allow keyboard activation
+  flipToBack.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' ') { flipCard.classList.add('flipped'); playClick(0.9); e.preventDefault(); }
+  });
+}
+
+if(flipCard && flipToFront){
+  flipToFront.addEventListener('click', (e)=>{
+    e.preventDefault();
+    flipCard.classList.remove('flipped');
+    playClick(0.9);
+  });
+  flipToFront.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' ') { flipCard.classList.remove('flipped'); playClick(0.9); e.preventDefault(); }
+  });
+}
+
+/* POPUP: open when any .contact-trigger is clicked (front or back) */
+const popupOverlay = document.getElementById('popupOverlay');
+const contactTriggers = document.querySelectorAll ? document.querySelectorAll('.contact-trigger') : [];
+
+function openPopup(){
+  if(!popupOverlay) return;
+  popupOverlay.classList.add('show');
+  popupOverlay.setAttribute('aria-hidden','false');
+  playClick(0.85);
+  // focus first link for keyboard users
+  const firstLink = popupOverlay.querySelector('a');
+  if(firstLink) firstLink.focus();
+}
+
+function closePopup(){
+  if(!popupOverlay) return;
+  popupOverlay.classList.remove('show');
+  popupOverlay.setAttribute('aria-hidden','true');
+  playClick(0.6);
+}
+
+contactTriggers.forEach(el => {
+  el.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    openPopup();
+  });
+  el.addEventListener('keydown', (ev)=>{
+    if(ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openPopup(); }
+  });
 });
 
-popupOverlay.onclick = (e)=>{
-  if(e.target === popupOverlay){
-    popupOverlay.classList.remove('show');
-    playClick(0.9);
-  }
-};
+/* close when clicking overlay (outside popup) */
+if(popupOverlay){
+  popupOverlay.addEventListener('click', (ev) => {
+    if(ev.target === popupOverlay) closePopup();
+  });
+}
 
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape'){
-    popupOverlay.classList.remove('show');
-  }
+/* close on ESC key */
+document.addEventListener('keydown', (ev) => {
+  if(ev.key === 'Escape' && popupOverlay && popupOverlay.classList.contains('show')) closePopup();
 });
+
+/* Prevent focus outline on mouse click but keep for keyboard */
+document.addEventListener('mousedown', ()=> document.body.classList.add('using-mouse'));
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Tab') document.body.classList.remove('using-mouse'); });
+
 </script>
 
 </body>
