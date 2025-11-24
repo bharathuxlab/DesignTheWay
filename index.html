@@ -41,6 +41,18 @@ header{
   border-bottom:1px solid var(--border);
   padding:20px 0;
   z-index:100;
+  animation:slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown{
+  from{
+    transform:translateY(-100%);
+    opacity:0;
+  }
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
 }
 
 .header-content{
@@ -70,11 +82,12 @@ header{
   text-decoration:none;
   font-weight:500;
   font-size:15px;
-  transition:color 0.3s ease;
+  transition:all 0.3s ease;
 }
 
 .nav-links a:hover{
   color:var(--text);
+  font-style:italic;
 }
 
 .contact-btn{
@@ -83,14 +96,19 @@ header{
   padding:10px 20px;
   border-radius:4px;
   font-weight:600;
-  transition:all 0.3s ease;
+  transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   border:none;
   cursor:pointer;
   font-size:15px;
 }
 
 .contact-btn:hover{
-  transform:translateY(-2px);
+  transform:scale(1.05) translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.contact-btn:active{
+  transform:scale(0.98);
 }
 
 /* HERO */
@@ -111,16 +129,59 @@ header{
   border:1px solid var(--border);
   border-radius:8px;
   overflow:hidden;
+  animation:fadeInLeft 0.8s ease-out 0.2s both;
+  cursor:pointer;
+  transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-image:hover{
+  transform:scale(1.03);
+}
+
+.hero-image:active{
+  transform:scale(0.98);
+}
+
+@keyframes fadeInLeft{
+  from{
+    opacity:0;
+    transform:translateX(-40px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
 }
 
 .hero-image img{
   width:100%;
   height:auto;
   display:block;
+  transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-image:hover img{
+  transform:scale(1.05);
+}
+
+.hero-image:active img{
+  transform:scale(0.98);
 }
 
 .hero-content{
   flex:1;
+  animation:fadeInRight 0.8s ease-out 0.4s both;
+}
+
+@keyframes fadeInRight{
+  from{
+    opacity:0;
+    transform:translateX(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
 }
 
 .hero-content h1{
@@ -129,6 +190,24 @@ header{
   line-height:1.1;
   margin-bottom:24px;
   letter-spacing:-1px;
+  cursor:pointer;
+  transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select:none;
+}
+
+.hero-content h1:hover{
+  transform:scale(1.02);
+}
+
+.hero-content h1:active{
+  transform:scale(0.98);
+}
+
+.hero-content h1 .highlight{
+  background:transparent;
+  padding:0;
+  border-radius:0;
+  display:inline;
 }
 
 .hero-description{
@@ -150,6 +229,16 @@ header{
   margin-bottom:32px;
   font-size:14px;
   font-weight:600;
+  cursor:pointer;
+  transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.status-badge:hover{
+  transform:scale(1.05);
+}
+
+.status-badge:active{
+  transform:scale(0.97);
 }
 
 .status-dot{
@@ -157,6 +246,16 @@ header{
   height:8px;
   border-radius:50%;
   background:#22c55e;
+  animation:pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%, 100%{
+    opacity:1;
+  }
+  50%{
+    opacity:0.5;
+  }
 }
 
 .hero-links{
@@ -171,7 +270,7 @@ header{
   font-weight:600;
   font-size:15px;
   text-decoration:none;
-  transition:all 0.3s ease;
+  transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   display:inline-block;
   border:1px solid var(--border);
 }
@@ -183,7 +282,12 @@ header{
 }
 
 .btn-primary:hover{
-  transform:translateY(-2px);
+  transform:scale(1.05) translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.btn-primary:active{
+  transform:scale(0.98);
 }
 
 .btn-secondary{
@@ -193,19 +297,45 @@ header{
 
 .btn-secondary:hover{
   background:var(--hover);
-  transform:translateY(-2px);
+  transform:scale(1.05) translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.btn-secondary:active{
+  transform:scale(0.98);
 }
 
 /* SECTION HEADER */
 .section-header{
   margin-bottom:48px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:all 0.8s ease-out;
 }
 
-.section-header h3{
+.section-header.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.section-header h2{
   font-size:clamp(28px,4vw,48px);
   font-weight:700;
   margin-bottom:12px;
   letter-spacing:-0.5px;
+  display:inline-block;
+  position:relative;
+  padding-bottom:4px;
+}
+
+.section-header h2::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:var(--text);
 }
 
 .section-header p{
@@ -229,14 +359,21 @@ header{
   border:1px solid var(--border);
   border-radius:8px;
   padding:32px;
-  transition:all 0.3s ease;
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display:flex;
   flex-direction:column;
+  opacity:0;
+  transform:translateY(50px) scale(0.95);
+}
+
+.project-card.visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 
 .project-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 24px rgba(0,0,0,0.06);
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 20px 40px rgba(0,0,0,0.1);
   border-color:#000;
 }
 
@@ -268,6 +405,11 @@ header{
   font-weight:700;
   font-size:18px;
   color:var(--bg);
+  transition:all 0.3s ease;
+}
+
+.project-card:hover .project-badge{
+  transform:rotate(5deg) scale(1.1);
 }
 
 .project-title{
@@ -351,7 +493,6 @@ header{
   content:'→';
 }
 
-/* POPUP */
 .popup-overlay{
   position:fixed;
   inset:0;
@@ -437,7 +578,7 @@ header{
       <div class="logo">bharath.</div>
       <nav class="nav-links">
         <a href="#work">Work</a>
-        <a href="https://www.linkedin.com/in/bharath-salla-b4930a399/" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">LinkedIn</a>
         <a href="https://docs.google.com/document/d/1P6ihRxO_Kp1Byd029WKtrizdYX-Cx544/edit?usp=sharing" target="_blank">Resume</a>
         <button class="contact-btn contact-trigger">Contact</button>
       </nav>
@@ -454,18 +595,16 @@ header{
     </div>
     
     <div class="hero-content">
-      <h1>Bharath Salla is an independent designer working with companies at the edge of new frontiers.</h1>
+      <h1>Bharath Salla is an <span class="highlight">independent designer</span> working with companies at the edge of new frontiers.</h1>
 
       <div class="status-badge">
         <div class="status-dot"></div>
         Available for new work
       </div>
 
-    
-
       <div class="hero-links">
         <a href="#work" class="btn btn-primary">View Projects</a>
-        <a href="https://www.linkedin.com/in/bharath-salla-b4930a399/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank" class="btn btn-secondary">LinkedIn</a>
         <a href="https://docs.google.com/document/d/1P6ihRxO_Kp1Byd029WKtrizdYX-Cx544/edit?usp=sharing" target="_blank" class="btn btn-secondary">Resume</a>
         <a href="#" class="btn btn-secondary contact-trigger">Contact</a>
       </div>
@@ -482,7 +621,6 @@ header{
     </div>
     
     <div class="projects-grid">
-      <!-- 🚨 your projects stay SAME — no edits made -->
       <!-- Verizon -->
       <div class="project-card">
         <div class="card-header">
@@ -627,6 +765,7 @@ header{
 </div>
 
 <script>
+// Popup functionality
 const popupOverlay = document.getElementById('popupOverlay');
 const contactTriggers = document.querySelectorAll('.contact-trigger');
 
@@ -647,6 +786,35 @@ document.addEventListener('keydown', (e) => {
   if(e.key === 'Escape' && popupOverlay.classList.contains('show')){
     popupOverlay.classList.remove('show');
   }
+});
+
+// Scroll animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if(entry.isIntersecting){
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 100);
+    }
+  });
+}, observerOptions);
+
+// Observe section header
+const sectionHeader = document.querySelector('.section-header');
+if(sectionHeader){
+  observer.observe(sectionHeader);
+}
+
+// Observe project cards
+const projectCards = document.querySelectorAll('.project-card');
+projectCards.forEach((card, index) => {
+  card.style.transitionDelay = `${index * 0.1}s`;
+  observer.observe(card);
 });
 </script>
 
