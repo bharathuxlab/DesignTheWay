@@ -4,495 +4,250 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Bharath Salla — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#ffffff;
-  --text:#000000;
-  --text-light:#666666;
-  --border:#e5e5e5;
-  --hover:#f5f5f5;
-}
-
 *{margin:0;padding:0;box-sizing:border-box;}
-
 html{scroll-behavior:smooth;}
-
 body{
   font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  background:#fafafa;
+  color:#1a1a1a;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-
 .container{
   max-width:1200px;
   margin:0 auto;
-  padding:0 24px;
+  padding:0 48px;
 }
 
 /* HEADER */
 header{
-  position:sticky;
-  top:0;
-  background:rgba(255,255,255,0.9);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
-  padding:20px 0;
-  z-index:100;
-  animation:slideDown 0.6s ease-out;
+  background:#fafafa;
+  padding:28px 0;
+  border-bottom:1px solid #e5e5e5;
 }
-
-@keyframes slideDown{
-  from{
-    transform:translateY(-100%);
-    opacity:0;
-  }
-  to{
-    transform:translateY(0);
-    opacity:1;
-  }
-}
-
 .header-content{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  flex-wrap:wrap;
-  gap:20px;
 }
-
 .logo{
-  font-size:24px;
+  font-size:20px;
   font-weight:700;
-  color:var(--text);
-  letter-spacing:-0.5px;
+  color:#ff6b35;
+  letter-spacing:-0.4px;
 }
-
 .nav-links{
   display:flex;
-  gap:24px;
+  gap:36px;
   align-items:center;
-  flex-wrap:wrap;
 }
-
 .nav-links a{
-  color:var(--text-light);
+  color:#1a1a1a;
   text-decoration:none;
   font-weight:500;
   font-size:15px;
-  transition:all 0.3s ease;
+  transition:color 0.2s ease;
 }
+.nav-links a:hover{color:#ff6b35;}
+.social-icons{
+  display:flex;
+  gap:18px;
+  margin-left:20px;
+}
+.social-icons a{
+  color:#1a1a1a;
+  font-size:20px;
+  transition:color 0.2s ease;
+}
+.social-icons a:hover{color:#ff6b35;}
 
-.nav-links a:hover{
-  color:var(--text);
-  font-style:italic;
-}
-
-.contact-btn{
-  background:var(--text);
-  color:var(--bg);
-  padding:10px 20px;
-  border-radius:4px;
-  font-weight:600;
-  transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border:none;
-  cursor:pointer;
-  font-size:15px;
-}
-
-.contact-btn:hover{
-  transform:scale(1.05) translateY(-2px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-}
-
-.contact-btn:active{
-  transform:scale(0.98);
-}
+/* MAIN */
+main{padding:80px 0 60px;}
 
 /* HERO */
 .hero{
-  padding:80px 0 60px;
+  text-align:left;
+  margin-bottom:100px;
 }
-
-.hero-layout{
-  display:flex;
-  align-items:center;
-  gap:60px;
-  flex-wrap:wrap;
-}
-
-.hero-image{
-  width:340px;
-  min-width:280px;
-  border:1px solid var(--border);
-  border-radius:8px;
-  overflow:hidden;
-  animation:fadeInLeft 0.8s ease-out 0.2s both;
-  cursor:pointer;
-  transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.hero-image:hover{
-  transform:scale(1.03);
-}
-
-.hero-image:active{
-  transform:scale(0.98);
-}
-
-@keyframes fadeInLeft{
-  from{
-    opacity:0;
-    transform:translateX(-40px);
-  }
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
-.hero-image img{
-  width:100%;
-  height:auto;
-  display:block;
-  transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.hero-image:hover img{
-  transform:scale(1.05);
-}
-
-.hero-image:active img{
-  transform:scale(0.98);
-}
-
-.hero-content{
-  flex:1;
-  animation:fadeInRight 0.8s ease-out 0.4s both;
-}
-
-@keyframes fadeInRight{
-  from{
-    opacity:0;
-    transform:translateX(40px);
-  }
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
-.hero-content h1{
-  font-size:clamp(20px,5vw,56px);
+.hero h1{
+  font-size:64px;
   font-weight:700;
+  margin-bottom:20px;
+  letter-spacing:-2px;
   line-height:1.1;
-  margin-bottom:24px;
-  letter-spacing:-1px;
-  cursor:pointer;
-  transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  user-select:none;
+  color:#1a1a1a;
 }
-
-.hero-content h1:hover{
-  transform:scale(1.02);
-}
-
-.hero-content h1:active{
-  transform:scale(0.98);
-}
-
-.hero-content h1 .highlight{
-  background:transparent;
-  padding:0;
-  border-radius:0;
-  display:inline;
-}
-
-.hero-description{
-  font-size:clamp(16px,2vw,19px);
-  color:var(--text-light);
-  margin-bottom:32px;
-  line-height:1.7;
-  max-width:700px;
-}
-
-.status-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:var(--bg);
-  border:1px solid var(--border);
-  padding:8px 16px;
-  border-radius:24px;
-  margin-bottom:32px;
-  font-size:14px;
-  font-weight:600;
-  cursor:pointer;
-  transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.status-badge:hover{
-  transform:scale(1.05);
-}
-
-.status-badge:active{
-  transform:scale(0.97);
-}
-
-.status-dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#22c55e;
-  animation:pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse{
-  0%, 100%{
-    opacity:1;
-  }
-  50%{
-    opacity:0.5;
-  }
-}
-
-.hero-links{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  padding:12px 24px;
-  border-radius:4px;
-  font-weight:600;
-  font-size:15px;
-  text-decoration:none;
-  transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  display:inline-block;
-  border:1px solid var(--border);
-}
-
-.btn-primary{
-  background:var(--text);
-  color:var(--bg);
-  border-color:var(--text);
-}
-
-.btn-primary:hover{
-  transform:scale(1.05) translateY(-2px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-}
-
-.btn-primary:active{
-  transform:scale(0.98);
-}
-
-.btn-secondary{
-  background:var(--bg);
-  color:var(--text);
-}
-
-.btn-secondary:hover{
-  background:var(--hover);
-  transform:scale(1.05) translateY(-2px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.1);
-}
-
-.btn-secondary:active{
-  transform:scale(0.98);
-}
-
-/* SECTION HEADER */
-.section-header{
-  margin-bottom:48px;
-  opacity:0;
-  transform:translateY(30px);
-  transition:all 0.8s ease-out;
-}
-
-.section-header.visible{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.section-header h2{
-  font-size:clamp(28px,4vw,48px);
+.hero-subtitle{
+  font-size:20px;
+  color:#1a1a1a;
   font-weight:700;
   margin-bottom:12px;
-  letter-spacing:-0.5px;
-  display:inline-block;
-  position:relative;
-  padding-bottom:4px;
 }
-
-.section-header h2::after{
-  content:'';
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:2px;
-  background:var(--text);
+.hero-bio{
+  max-width:760px;
+  margin:40px 0 0 0;
+  font-size:17px;
+  line-height:1.7;
+  color:#4a4a4a;
+  font-weight:400;
 }
+.hero-bio p{margin-bottom:20px;}
 
-.section-header p{
-  font-size:clamp(16px,2vw,18px);
-  color:var(--text-light);
-}
-
-/* PROJECTS */
-.projects{
-  padding:60px 0 80px;
-}
-
-.projects-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,350px),1fr));
-  gap:24px;
-}
-
-.project-card{
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:32px;
-  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display:flex;
-  flex-direction:column;
-  opacity:0;
-  transform:translateY(50px) scale(0.95);
-}
-
-.project-card.visible{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-
-.project-card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 20px 40px rgba(0,0,0,0.1);
-  border-color:#000;
-}
-
-.card-header{
+/* SECTION HEADER */
+.projects-header{
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
-  margin-bottom:16px;
-  gap:16px;
+  align-items:center;
+  margin-bottom:28px;
+}
+.projects-header h2{
+  font-size:38px;
+  font-weight:700;
+  letter-spacing:-1px;
+  color:#1a1a1a;
+}
+.projects-divider{
+  height:2px;
+  background:#ff6b35;
+  margin-bottom:40px;
+  border-radius:1px;
+}
+.view-all a{
+  color:#1a1a1a;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:500;
+  transition:color 0.2s ease;
+}
+.view-all a:hover{color:#ff6b35;}
+
+/* PROJECTS GRID - 2 COLUMNS */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:40px;
+  margin-bottom:80px;
+}
+.project-card{
+  background:#fff;
+  border:1px solid #e5e5e5;
+  border-radius:0px;
+  overflow:hidden;
+  transition:all 0.3s ease;
+  text-decoration:none;
+  color:#1a1a1a;
+  display:block;
+}
+.project-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.08);
+  border-color:#d0d0d0;
 }
 
-.company{
-  font-size:13px;
-  color:var(--text-light);
-  font-weight:600;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
-}
-
-.project-badge{
-  width:40px;
-  height:40px;
-  min-width:40px;
-  border-radius:4px;
-  background:var(--text);
+/* IMAGE CONTAINER */
+.project-image{
+  width:100%;
+  height:360px;
+  background:#f8f8f8;
+  position:relative;
+  overflow:hidden;
+  padding:28px;
   display:flex;
   align-items:center;
   justify-content:center;
+}
+.project-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  transition:transform 0.4s ease;
+}
+.project-card:hover .project-image img{
+  transform:scale(1.06);
+}
+.project-year{
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  font-size:56px;
+  font-weight:300;
+  color:rgba(0,0,0,0.04);
+  letter-spacing:-2px;
+  pointer-events:none;
+}
+
+/* PROJECT INFO */
+.project-info{
+  padding:32px 36px 36px;
+  background:#fff;
+}
+.project-tag{
+  display:inline-block;
+  font-size:11px;
   font-weight:700;
-  font-size:18px;
-  color:var(--bg);
-  transition:all 0.3s ease;
+  color:#ff6b35;
+  background:#fff5f2;
+  padding:6px 14px;
+  border-radius:0px;
+  margin-bottom:14px;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  border:1px solid #ffe5dc;
 }
-
-.project-card:hover .project-badge{
-  transform:rotate(5deg) scale(1.1);
-}
-
 .project-title{
-  font-size:clamp(20px,3vw,24px);
+  font-size:24px;
   font-weight:700;
   margin-bottom:8px;
-  line-height:1.2;
+  letter-spacing:-0.5px;
+  color:#1a1a1a;
 }
-
-.project-type{
-  display:inline-block;
-  background:var(--hover);
-  color:var(--text);
-  padding:4px 10px;
-  border-radius:4px;
-  font-size:12px;
-  font-weight:600;
-  margin-bottom:16px;
-  border:1px solid var(--border);
+.company{
+  font-size:16px;
+  color:#666;
+  font-weight:500;
+  margin-bottom:18px;
 }
-
-.project-desc{
-  color:var(--text-light);
+.project-description{
   font-size:15px;
-  line-height:1.7;
+  color:#4a4a4a;
+  line-height:1.6;
   margin-bottom:24px;
-  flex-grow:1;
 }
-
-.skills-section{
-  margin-bottom:24px;
-  padding-top:24px;
-  border-top:1px solid var(--border);
+.project-skills, .project-tech{
+  margin-bottom:18px;
 }
-
-.skill-group{
-  margin-bottom:12px;
+.project-skills-title, .project-tech-title{
+  font-size:11px;
+  font-weight:700;
+  color:#666;
+  margin-bottom:8px;
+  text-transform:uppercase;
+  letter-spacing:0.8px;
 }
-
-.skill-group:last-child{
-  margin-bottom:0;
-}
-
-.skill-label{
-  font-weight:600;
-  font-size:13px;
-  color:var(--text);
-  display:block;
-  margin-bottom:4px;
-}
-
-.skill-list{
-  color:var(--text-light);
+.project-skills-list, .project-tech-list{
   font-size:14px;
+  color:#4a4a4a;
   line-height:1.6;
 }
-
-.card-footer{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:16px;
-}
-
-.view-link{
-  color:var(--text);
-  text-decoration:none;
-  font-weight:600;
-  font-size:15px;
+.view-project-btn{
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  transition:gap 0.3s ease;
+  gap:6px;
+  font-size:14px;
+  font-weight:600;
+  color:#ff6b35;
+  text-decoration:none;
+  transition:gap 0.2s ease;
+  margin-top:10px;
+}
+.view-project-btn:hover{
+  gap:10px;
 }
 
-.view-link:hover{
-  gap:12px;
-}
-
-.view-link::after{
-  content:'→';
-}
-
+/* CONTACT POPUP */
 .popup-overlay{
   position:fixed;
   inset:0;
@@ -503,274 +258,279 @@ header{
   z-index:1000;
   padding:20px;
 }
-
-.popup-overlay.show{
-  display:flex;
-}
-
+.popup-overlay.show{display:flex;}
 .popup{
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:40px;
-  max-width:500px;
+  background:#fff;
+  border-radius:0px;
+  padding:44px;
+  max-width:420px;
   width:100%;
-  transform:scale(0.95);
-  opacity:0;
-  transition:all 0.3s ease;
-}
-
-.popup-overlay.show .popup{
-  transform:scale(1);
-  opacity:1;
-}
-
-.popup h3{
-  font-size:24px;
-  margin-bottom:24px;
   text-align:center;
-  font-weight:700;
+  box-shadow:0 24px 48px rgba(0,0,0,0.15);
 }
-
+.popup h3{
+  font-size:26px;
+  font-weight:700;
+  margin-bottom:36px;
+  letter-spacing:-0.5px;
+  color:#1a1a1a;
+}
 .popup a{
   display:block;
-  color:var(--text);
+  color:#1a1a1a;
   text-decoration:none;
   font-size:16px;
-  font-weight:600;
-  padding:16px;
-  background:var(--hover);
-  border:1px solid var(--border);
-  border-radius:4px;
+  font-weight:500;
+  padding:18px;
+  background:#f8f8f8;
+  border-radius:8px;
   margin-bottom:12px;
-  text-align:center;
-  transition:all 0.3s ease;
+  transition:background 0.2s ease;
+  border:1px solid #e5e5e5;
 }
-
-.popup a:last-of-type{
-  margin-bottom:0;
-}
-
 .popup a:hover{
-  background:var(--text);
-  color:var(--bg);
-  transform:translateX(4px);
+  background:#fff5f2;
+  border-color:#ff6b35;
+  color:#ff6b35;
 }
 
 /* RESPONSIVE */
-@media (max-width:860px){
-  .hero-layout{
+@media (max-width:1024px){
+  .projects-grid{
+    grid-template-columns:1fr;
+    gap:36px;
+  }
+  .project-image{height:340px;}
+}
+@media (max-width:768px){
+  .container{padding:0 28px;}
+  .hero h1{font-size:48px;}
+  main{padding:60px 0 40px;}
+  .project-image{height:320px;}
+  .nav-links{gap:24px;}
+  .social-icons{display:none;}
+  .projects-header{
     flex-direction:column;
-    text-align:center;
+    align-items:flex-start;
+    gap:16px;
   }
-  .hero-content{
-    text-align:center;
-  }
+  .projects-grid{gap:32px;}
+}
+@media (max-width:480px){
+  .hero h1{font-size:38px;}
+  .hero-subtitle{font-size:18px;}
+  .projects-header h2{font-size:32px;}
+  .project-image{height:280px;}
+  .project-info{padding:24px 28px 28px;}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo">bharath.</div>
+      <div class="logo">BS</div>
       <nav class="nav-links">
+        <a href="#about">About</a>
         <a href="#work">Work</a>
-        <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">LinkedIn</a>
-        <a href="https://docs.google.com/document/d/1P6ihRxO_Kp1Byd029WKtrizdYX-Cx544/edit?usp=sharing" target="_blank">Resume</a>
-        <button class="contact-btn contact-trigger">Contact</button>
+        <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">Blog</a>
+        <div class="social-icons">
+          <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+          <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank" title="LinkedIn">in</a>
+          <a href="mailto:beconfident456@gmail.com" title="Email">@</a>
+        </div>
       </nav>
     </div>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container hero-layout">
-    
-    <div class="hero-image">
-      <img src="mine.jpeg" alt="Bharath Salla">
-    </div>
-    
-    <div class="hero-content">
-      <h1>Bharath Salla is an <span class="highlight">independent designer</span> working with companies at the edge of new frontiers.</h1>
-
-      <div class="status-badge">
-        <div class="status-dot"></div>
-        Available for new work
-      </div>
-
-      <div class="hero-links">
-        <a href="#work" class="btn btn-primary">View Projects</a>
-        <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank" class="btn btn-secondary">LinkedIn</a>
-        <a href="https://docs.google.com/document/d/1P6ihRxO_Kp1Byd029WKtrizdYX-Cx544/edit?usp=sharing" target="_blank" class="btn btn-secondary">Resume</a>
-        <a href="#" class="btn btn-secondary contact-trigger">Contact</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section class="projects" id="work">
+<main>
   <div class="container">
-    <div class="section-header">
-      <h2>Selected Work</h2>
-    </div>
     
-    <div class="projects-grid">
-      <!-- Verizon -->
-      <div class="project-card">
-        <div class="card-header">
-          <div>
-            <div class="company">Verizon</div>
-          </div>
-          <div class="project-badge">V</div>
-        </div>
-        <h3 class="project-title">B2B Enterprise Software</h3>
-        <div class="project-type">Ground-up Rebuild</div>
-        <p class="project-desc">Cut through Verizon's tangled order-management maze and rebuilt it into a clear, real-time system that exposes stuck orders and accelerates fixes across regions.</p>
-        <div class="skills-section">
-          <div class="skill-group">
-            <span class="skill-label">Skills</span>
-            <div class="skill-list">User Research · Data Analytics · Data Visualization · Interaction Design</div>
-          </div>
-          <div class="skill-group">
-            <span class="skill-label">Technologies</span>
-            <div class="skill-list">Design System · Figma · REST API · Real-time Dashboards</div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <a href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=761-180356&t=kpZ1vkPGusXFC9vd-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1" target="_blank" class="view-link">View Case Study</a>
+    <section class="hero" id="about">
+      <h1>Bharath Salla</h1>
+      <div class="hero-subtitle">Founder — Matrix Designs</div>
+      
+      <div class="hero-bio">
+        <p>Hi there! I'm an adventurer based in New York, with a background in the entertainment industry. These days, I'm driven by a love for creativity and innovation, constantly exploring new ways to connect ideas and build something meaningful.</p>
+        <p>When I'm not immersed in my projects, you'll find me outdoors - scaling rock faces, hiking scenic trails, and embracing the energy of nature. Life is all about climbing to new heights, both literally and figuratively!</p>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="projects-header">
+        <h2>Latest Projects</h2>
+        <div class="view-all">
+          <a href="#work">View all →</a>
         </div>
       </div>
+      <div class="projects-divider"></div>
+      
+      <div class="projects-grid">
+        
+        <a href="https://pitch.com/v/verizon-br8ike" target="_blank" class="project-card">
+          <div class="project-image">
+            <img src="veri.jpeg" alt="Verizon project">
+          </div>
+          <div class="project-info">
+            <div class="project-tag">Ground-up Rebuild</div>
+            <div class="project-title">B2B Enterprise Software</div>
+            <div class="company">VERIZON</div>
+            <p class="project-description">Cut through Verizon's tangled order-management maze and rebuilt it into a clear, real-time system that exposes stuck orders and accelerates fixes across regions.</p>
+            <div class="project-skills">
+              <div class="project-skills-title">Skills</div>
+              <div class="project-skills-list">User Research · Data Analytics · Data Visualization · Interaction Design</div>
+            </div>
+            <div class="project-tech">
+              <div class="project-tech-title">Technologies</div>
+              <div class="project-tech-list">Design System · Figma · REST API · Real-time Dashboards</div>
+            </div>
+            <span class="view-project-btn">View Project →</span>
+          </div>
+        </a>
 
-      <!-- UHG -->
-      <div class="project-card">
-        <div class="card-header">
-          <div>
-            <div class="company">UnitedHealth Group</div>
-          </div>
-          <div class="project-badge">U</div>
-        </div>
-        <h3 class="project-title">Healthcare AI & Claims</h3>
-        <div class="project-type">New Product</div>
-        <p class="project-desc">Cut through UHC's overwhelming EOB clutter with instant AI summaries that turn 8-page documents into seconds of clarity.</p>
-        <div class="skills-section">
-          <div class="skill-group">
-            <span class="skill-label">Skills</span>
-            <div class="skill-list">User Research · Conversational Design · Information Architecture · Usability Testing</div>
-          </div>
-          <div class="skill-group">
-            <span class="skill-label">Technologies</span>
-            <div class="skill-list">Generative AI · Natural Language Processing · Machine Learning · Chatbot Interface</div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <a href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=1173-180877&t=Lf4Bu586oLxMJqRZ-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1" target="_blank" class="view-link">View Project</a>
-        </div>
-      </div>
 
-      <!-- HDFC -->
-      <div class="project-card">
-        <div class="card-header">
-          <div>
+<a href="https://pitch.com/v/hdfc-558t68" target="_blank" class="project-card">
+          <div class="project-image">
+            <img src="hdfc.jpeg" alt="HDFC Project">
+          </div>
+          <div class="project-info">
+            <div class="project-tag">Core Overhaul</div>
+            <div class="project-title">Fintech & Digital Banking</div>
             <div class="company">HDFC Bank</div>
-          </div>
-          <div class="project-badge">H</div>
-        </div>
-        <h3 class="project-title">Fintech & Digital Banking</h3>
-        <div class="project-type">Core Overhaul</div>
-        <p class="project-desc">Cut through HDFC Bank's tangled transfer flow and rebuilt it as a simple 3-step experience used by 120 million customers across APAC.</p>
-        <div class="skills-section">
-          <div class="skill-group">
-            <span class="skill-label">Skills</span>
-            <div class="skill-list">Competitive analysis · Journey mapping · Empathy mapping · Interaction Design · Data Analytics</div>
-          </div>
-          <div class="skill-group">
-            <span class="skill-label">Technologies</span>
-            <div class="skill-list">Hotjar · Google Analytics · Zendesk · Agile Tools</div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <a href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=744-122470&t=QasMghCzhOZiyFuN-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=617%3A121933&hide-ui=1" target="_blank" class="view-link">View Work</a>
-        </div>
-      </div>
+            <p class="project-description">Cut through HDFC Bank's tangled transfer flow and rebuilt it as a simple 3-step experience used by 120 million customers across APAC.
 
-      <!-- Clarisights -->
-      <div class="project-card">
-        <div class="card-header">
-          <div>
+.</p>
+            <div class="project-skills">
+              <div class="project-skills-title">Skills</div>
+              <div class="project-skills-list">UCompetitive analysis · Journey mapping · Empathy mapping · Interaction Design · Data Analytics</div>
+            </div>
+            <div class="project-tech">
+              <div class="project-tech-title">Technologies</div>
+              <div class="project-tech-list">Hotjar · Google Analytics · Zendesk · Agile Tools</div>
+            </div>
+            <span class="view-project-btn">View Project →</span>
+          </div>
+        </a>
+
+
+        <a href="https://pitch.com/v/myportfolio-uun6h6" target="_blank" class="project-card">
+          <div class="project-image">
+            <img src="uhc.jpeg" alt="UHC Project">
+            <div class="project-year">2023</div>
+          </div>
+          <div class="project-info">
+            <div class="project-tag">New Product</div>
+            <div class="project-title">Healthcare AI & Claims</div>
+            <div class="company">UnitedHealth Group</div>
+            <p class="project-description">Cut through UHC's overwhelming EOB clutter with instant AI summaries that turn 8-page documents into seconds of clarity.</p>
+            <div class="project-skills">
+              <div class="project-skills-title">Skills</div>
+              <div class="project-skills-list">User Research · Conversational Design · Information Architecture · Usability Testing</div>
+            </div>
+            <div class="project-tech">
+              <div class="project-tech-title">Technologies</div>
+              <div class="project-tech-list">Generative AI · Natural Language Processing · Machine Learning · Chatbot Interface</div>
+            </div>
+            <span class="view-project-btn">View Project →</span>
+          </div>
+        </a>
+
+        <a href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?page-id=0%3A1&node-id=2503-184255&viewport=-12023%2C-18110%2C0.26&t=uNiJj6xgPbAzXezV-8&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1330%3A199755&hide-ui=1" target="_blank" class="project-card">
+          <div class="project-image">
+            <img src="clarisights.jpeg" alt="clarisights Project">
+            <div class="project-year">2024</div>
+          </div>
+          <div class="project-info">
+           <div class="project-tag">Feature Revamp</div>
+            <div class="project-title">Marketing Analytics</div>
             <div class="company">Clarisights</div>
+            <p class="project-description">Overall saved teams 11.7 hours/week (≈76 working days/year) and delivered a 5× ROI for customers like Delivery Hero, HelloFresh, Meesho, AJIO, and BigBasket.</p>
+            <div class="project-skills">
+              <div class="project-skills-title">Skills</div>
+              <div class="project-skills-list">Research · Information Architecture · Prototyping · Usability Testing</div>
+            </div>
+            <div class="project-tech">
+              <div class="project-tech-title">Technologies</div>
+              <div class="project-tech-list">Figma · Analytics · Collaboration Platforms</div>
+            </div>
+            <span class="view-project-btn">View Project →</span>
           </div>
-          <div class="project-badge">C</div>
-        </div>
-        <h3 class="project-title">Marketing Analytics</h3>
-        <div class="project-type">Feature Revamp</div>
-        <p class="project-desc">Overall saved teams 11.7 hours/week (≈76 working days/year) and delivered a 5× ROI for customers like Delivery Hero, HelloFresh, Meesho, AJIO, and BigBasket.</p>
-        <div class="skills-section">
-          <div class="skill-group">
-            <span class="skill-label">Skills</span>
-            <div class="skill-list">Research · Information Architecture · Prototyping · Usability Testing</div>
-          </div>
-          <div class="skill-group">
-            <span class="skill-label">Technologies</span>
-            <div class="skill-list">Figma · Analytics · Collaboration Platforms</div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <a href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2503-184255&t=xaQdbtl0kJoxPlD8-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1330%3A199755&show-proto-sidebar=1&hide-ui=1" target="_blank" class="view-link">Case Study</a>
-        </div>
-      </div>
+        </a>
 
-      <!-- Smartbeings -->
-      <div class="project-card">
-        <div class="card-header">
-          <div>
+
+         <a href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?page-id=0%3A1&node-id=2504-392089&viewport=-12023%2C-18110%2C0.26&t=uNiJj6xgPbAzXezV-8&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1330%3A199755&hide-ui=1" target="_blank" class="project-card">
+          <div class="project-image">
+            <img src="smartbeings.jpeg" alt="smartbeings Project">
+            <div class="project-year">2024</div>
+          </div>
+          <div class="project-info">
+           <div class="project-tag">Platform Launch</div>
+            <div class="project-title">Voice AI Platform</div>
             <div class="company">SmartBeings</div>
+            <p class="project-description">Designed Smartbeings' enterprise conversation builder—turning complex conversational logic into simple, visual, drag-and-drop workflows for real-world use cases.</p>
+            <div class="project-skills">
+              <div class="project-skills-title">Skills</div>
+              <div class="project-skills-list">Conversation Design · Workflow Design · Information Architecture · Prototyping · Multimodal Interaction · Usability Testing</div>
+            </div>
+            <div class="project-tech">
+              <div class="project-tech-title">Technologies</div>
+              <div class="project-tech-list">GAI & Voice Tech · LLM · NLP</div>
+            </div>
+            <span class="view-project-btn">View Project →</span>
           </div>
-          <div class="project-badge">S</div>
-        </div>
-        <h3 class="project-title">Voice AI Platform</h3>
-        <div class="project-type">Platform Launch</div>
-        <p class="project-desc">Designed Smartbeings' enterprise conversation builder—turning complex conversational logic into simple, visual, drag-and-drop workflows for real-world use cases.</p>
-        <div class="skills-section">
-          <div class="skill-group">
-            <span class="skill-label">Skills</span>
-            <div class="skill-list">Conversation Design · Workflow Design · Information Architecture · Prototyping · Multimodal Interaction · Usability Testing</div>
+        </a>
+
+
+        <a href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?page-id=0%3A1&node-id=2853-342669&viewport=-6413%2C-13090%2C0.19&t=2mEE4tcwcpHOjZ8i-8&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1330%3A199755&hide-ui=1" target="_blank" class="project-card">
+          <div class="project-image">
+            <img src="design.jpeg" alt="Bank of Carabao">
+            <div class="project-year">2024</div>
           </div>
-          <div class="skill-group">
-            <span class="skill-label">Technologies</span>
-            <div class="skill-list">AI & Voice Tech · LLM · NLP</div>
+          <div class="project-info">
+           <div class="project-tag">DESIGN SYSTEM LAUNCH</div>
+            <div class="project-title">Bank Carabao Design System</div>
+            <div class="company">Bank of Carabao</div>
+            <p class="project-description">Bank Carabao (client name undisclosed under NDA)
+A multi-theme atomic design system created for the bank’s new mobile app. It improves the earlier Backbase system, reduces design delivery time by 50%, and enables consistent UI at scale despite limited design capacity..</p>
+            <div class="project-skills">
+              <div class="project-skills-title">Skills</div>
+              <div class="project-skills-list">Design System · Tokens & Variables · Components · Theming
+UX/UI Architecture · Documentation</div>
+            </div>
+            <div class="project-tech">
+              <div class="project-tech-title">Technologies</div>
+              <div class="project-tech-list">Figma Variables · Atomic Library · Responsive Grid · Dev Mode</div>
+            </div>
+            <span class="view-project-btn">View Project →</span>
           </div>
-        </div>
-        <div class="card-footer">
-          <a href="https://www.figma.com/proto/DjyzJKOjUe8uf9330m49NW/Portfolio?node-id=2504-392089&t=hqDdiz3HQG6akcVJ-8&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1330%3A199755&hide-ui=1" target="_blank" class="view-link">View Project</a>
-        </div>
+        </a>
+
+    
+
       </div>
+    </section>
 
-    </div>
   </div>
-</section>
+</main>
 
-<!-- POPUP -->
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup">
     <h3>Get in Touch</h3>
     <a href="mailto:beconfident456@gmail.com">beconfident456@gmail.com</a>
     <a href="tel:+918247679545">+91 82476 79545</a>
+    <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">LinkedIn Profile</a>
   </div>
 </div>
 
 <script>
-// Popup functionality
 const popupOverlay = document.getElementById('popupOverlay');
-const contactTriggers = document.querySelectorAll('.contact-trigger');
+const emailLinks = document.querySelectorAll('a[href^="mailto"]');
 
-contactTriggers.forEach(trigger => {
-  trigger.addEventListener('click', (e) => {
+emailLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    if(link.closest('.popup')) return;
     e.preventDefault();
     popupOverlay.classList.add('show');
   });
@@ -788,33 +548,17 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Scroll animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, index) => {
-    if(entry.isIntersecting){
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, index * 100);
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
   });
-}, observerOptions);
-
-// Observe section header
-const sectionHeader = document.querySelector('.section-header');
-if(sectionHeader){
-  observer.observe(sectionHeader);
-}
-
-// Observe project cards
-const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach((card, index) => {
-  card.style.transitionDelay = `${index * 0.1}s`;
-  observer.observe(card);
 });
 </script>
 
