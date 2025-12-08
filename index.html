@@ -1,820 +1,956 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Bharath Salla — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bharath Salla — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* --- STYLES REMAINING AS BEFORE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  :root{
-    --bg:#f9f7eb;
-    --card-bg:#fff;
-    --text:#1f4c34;
-    --text-secondary:#1f4c34;
-    --text-tertiary:#4a7c59;
-    --border:#e5e5e5;
-    --hover-bg:#f8f8f8;
-    --accent:#1f4c34;
-  }
+html {
+    scroll-behavior: smooth;
+}
 
-  [data-theme="dark"]{
-    --bg:#0a0a0a;
-    --card-bg:#111;
-    --text:#fff;
-    --text-secondary:#aaa;
-    --text-tertiary:#666;
-    --border:#222;
-    --hover-bg:#1a1a1a;
-    --accent:#fff;
-  }
+:root {
+    --bg: #f9f7eb;
+    --card-bg: #fff;
+    --text: #1f4c34;
+    --text-secondary: #1f4c34;
+    --text-tertiary: #4a7c59;
+    --border: #e5e5e5;
+    --hover-bg: #f8f8f8;
+    --accent: #1f4c34;
+}
 
-  body{
-    font-family:'Inter',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-    transition:background 0.3s ease, color 0.3s ease;
-    position:relative;
-    overflow-x:hidden;
-  }
+[data-theme="dark"] {
+    --bg: #0a0a0a;
+    --card-bg: #111;
+    --text: #fff;
+    --text-secondary: #aaa;
+    --text-tertiary: #666;
+    --border: #222;
+    --hover-bg: #1a1a1a;
+    --accent: #fff;
+}
 
-  /* MOUSE GRADIENT EFFECT */
-  body::before{
-    content:'';
-    position:fixed;
-    width:600px;
-    height:600px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(255,182,193,0.15) 0%, rgba(173,216,230,0.1) 50%, transparent 70%);
-    pointer-events:none;
-    z-index:1;
-    transition:opacity 0.3s ease;
-    opacity:0;
-    left:-300px;
-    top:-300px;
-  }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s ease, color 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+}
 
-  [data-theme="dark"] body::before{
-    background:radial-gradient(circle, rgba(138,43,226,0.12) 0%, rgba(64,224,208,0.08) 50%, transparent 70%);
-  }
+/* MOUSE GRADIENT EFFECT */
+body::before {
+    content: '';
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 182, 193, 0.15) 0%, rgba(173, 216, 230, 0.1) 50%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    left: -300px;
+    top: -300px;
+}
 
-  body.mouse-active::before{
-    opacity:1;
-  }
+[data-theme="dark"] body::before {
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.12) 0%, rgba(64, 224, 208, 0.08) 50%, transparent 70%);
+}
 
-  /* HEADER */
-  header{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    background:rgba(249,247,235,0.8);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-    padding:16px 0;
-    z-index:1000;
-    border-bottom:1px solid var(--border);
-    transition:all 0.3s ease;
-  }
-  [data-theme="dark"] header{
-    background:rgba(10,10,10,0.8);
-  }
-  .header-content{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    max-width:800px;
-    margin:0 auto;
-    padding:0 32px;
-  }
-  .logo{
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:-0.2px;
+body.mouse-active::before {
+    opacity: 1;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(249, 247, 235, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 16px 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] header {
+    background: rgba(10, 10, 10, 0.8);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.logo {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
     color: darkgreen;
-  }
-  .nav-links{
-    display:flex;
-    gap:28px;
-    align-items:center;
-  }
-  .nav-links a{
-    color:var(--text);
-    text-decoration:none;
-    font-weight:400;
-    font-size:13px;
-    transition:opacity 0.2s ease;
-    opacity:0.7;
-  }
-  .nav-links a:hover{opacity:1;}
-  .social-icons{
-    display:flex;
-    gap:14px;
-    margin-left:16px;
-    align-items:center;
-  }
-  .social-icons a{
-    color:var(--text);
-    font-size:16px;
-    transition:opacity 0.2s ease;
-    opacity:0.7;
-  }
-  .social-icons a:hover{opacity:1;}
+}
 
-  /* THEME TOGGLE */
-  .theme-toggle{
-    background:var(--hover-bg);
-    border:1px solid var(--border);
-    width:32px;
-    height:32px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:all 0.3s ease;
-    margin-left:8px;
-  }
-  .theme-toggle:hover{
-    transform:rotate(180deg);
-    border-color:var(--text);
-  }
-  .theme-icon{
-    font-size:14px;
-  }
+.nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
 
-  /* MAIN */
-  main{
-    padding:100px 0 60px;
-    max-width:800px;
-    margin:0 auto;
-    padding-left:32px;
-    padding-right:32px;
-    position:relative;
-    z-index:2;
-  }
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 13px;
+    transition: opacity 0.2s ease;
+    opacity: 0.7;
+}
 
-  /* HERO */
-  .hero{
-    text-align:left;
-    margin-bottom:140px;
-    padding-top:80px;
-  }
-  .hero h1{
-    font-size:56px;
-    font-weight:600;
-    margin-bottom:12px;
-    letter-spacing:-1.5px;
-    line-height:1.1;
-    color:var(--text);
-    transform:translateY(0);
-    transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .hero:hover h1{
-    transform:translateY(-8px);
-  }
-  .hero-subtitle{
-    font-size:18px;
-    color:var(--text-secondary);
-    font-weight:400;
-    margin-bottom:40px;
-  }
-  .hero-bio{
-    max-width:580px;
-    font-size:15px;
-    line-height:1.7;
-    color:var(--text-secondary);
-    font-weight:400;
-  }
-  .hero-bio p{
-    margin-bottom:18px;
-    transition:transform 0.4s ease;
-  }
-  .hero-bio p:hover{
-    transform:translateX(8px);
-  }
+.nav-links a:hover {
+    opacity: 1;
+}
 
-  /* SECTION */
-  .projects-header{
-    text-align:left;
-    margin-bottom:60px;
-  }
-  .projects-header h2{
-    font-size:36px;
-    font-weight:600;
-    letter-spacing:-1px;
-    color:var(--text);
-    margin-bottom:8px;
-    transition:transform 0.4s ease;
-    display:inline-block;
-  }
-  .projects-header:hover h2{
-    transform:scale(1.05);
-  }
-  .projects-divider{
-    width:40px;
-    height:2px;
-    background:var(--accent);
-    margin:0;
-    transition:width 0.4s ease;
-  }
-  .projects-header:hover .projects-divider{
-    width:80px;
-  }
+.social-icons {
+    display: flex;
+    gap: 14px;
+    margin-left: 16px;
+    align-items: center;
+}
 
-  /* PROJECTS */
-  .projects-list{
-    display:flex;
-    flex-direction:column;
-    gap:24px;
-    margin-bottom:60px;
-  }
-  .project-card{
-    background:var(--card-bg);
-    border:1px solid var(--border);
-    border-radius:12px;
-    overflow:hidden;
-    transition:all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    text-decoration:none;
-    color:var(--text);
-    display:block;
-    position:relative;
+.social-icons a {
+    color: var(--text);
+    font-size: 16px;
+    transition: opacity 0.2s ease;
+    opacity: 0.7;
+}
+
+.social-icons a:hover {
+    opacity: 1;
+}
+
+/* THEME TOGGLE */
+.theme-toggle {
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 8px;
+}
+
+.theme-toggle:hover {
+    transform: rotate(180deg);
+    border-color: var(--text);
+}
+
+.theme-icon {
+    font-size: 14px;
+}
+
+/* MAIN */
+main {
+    padding: 100px 0 60px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+    position: relative;
+    z-index: 2;
+}
+
+/* HERO */
+.hero {
+    text-align: left;
+    margin-bottom: 140px;
+    padding-top: 80px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    color: var(--text);
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero:hover h1 {
+    transform: translateY(-8px);
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.hero-bio {
+    max-width: 580px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.hero-bio p {
+    margin-bottom: 18px;
+    transition: transform 0.4s ease;
+}
+
+.hero-bio p:hover {
+    transform: translateX(8px);
+}
+
+/* SECTION */
+.projects-header {
+    text-align: left;
+    margin-bottom: 60px;
+}
+
+.projects-header h2 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 8px;
+    transition: transform 0.4s ease;
+    display: inline-block;
+}
+
+.projects-header:hover h2 {
+    transform: scale(1.05);
+}
+
+.projects-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0;
+    transition: width 0.4s ease;
+}
+
+.projects-header:hover .projects-divider {
+    width: 80px;
+}
+
+/* PROJECTS */
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    position: relative;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(31,76,52,0.08) 19px, rgba(31,76,52,0.08) 20px),
-      repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(31,76,52,0.08) 19px, rgba(31,76,52,0.08) 20px);
-    background-size:20px 20px;
-  }
+        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(31, 76, 52, 0.08) 19px, rgba(31, 76, 52, 0.08) 20px),
+        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(31, 76, 52, 0.08) 19px, rgba(31, 76, 52, 0.08) 20px);
+    background-size: 20px 20px;
+}
 
-  [data-theme="dark"] .project-card{
+[data-theme="dark"] .project-card {
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255,255,255,0.15) 19px, rgba(255,255,255,0.15) 20px),
-      repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(255,255,255,0.15) 19px, rgba(255,255,255,0.15) 20px);
-    background-size:20px 20px;
-  }
+        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255, 255, 255, 0.15) 19px, rgba(255, 255, 255, 0.15) 20px),
+        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(255, 255, 255, 0.15) 19px, rgba(255, 255, 255, 0.15) 20px);
+    background-size: 20px 20px;
+}
 
-  .project-card::before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background:linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.05) 100%);
-    opacity:0;
-    transition:opacity 0.5s ease;
-    pointer-events:none;
-  }
-  [data-theme="dark"] .project-card::before{
-    background:linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 100%);
-  }
-  .project-card:hover::before{
-    opacity:1;
-  }
-  .project-card:hover{
-    transform:translateX(12px) scale(1.02);
-    box-shadow:0 20px 60px rgba(0,0,0,0.15);
-    border-color:var(--text-tertiary);
-  }
-  [data-theme="dark"] .project-card:hover{
-    box-shadow:0 20px 60px rgba(0,0,0,0.5);
-  }
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
 
-  /* COMPACT LAYOUT */
-  .project-content{
-    display:grid;
-    grid-template-columns:200px 1fr;
-    gap:32px;
-    padding:28px;
-    align-items:start;
-    position:relative;
-    z-index:1;
-  }
-  .project-image{
-    width:200px;
-    height:200px;
-    background:var(--hover-bg);
-    border-radius:8px;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    flex-shrink:0;
-    position:relative;
-  }
-  .project-image::after{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:radial-gradient(circle at center, transparent 0%, var(--hover-bg) 100%);
-    opacity:0;
-    transition:opacity 0.5s ease;
-  }
-  .project-card:hover .project-image::after{
-    opacity:0.5;
-  }
-  .project-image img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    transition:all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    position:relative;
-    z-index:1;
-  }
-  .project-card:hover .project-image img{
-    transform:scale(1.1) rotate(3deg);
-  }
+[data-theme="dark"] .project-card::before {
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.03) 100%);
+}
 
-  .project-info{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-  }
-  .project-tag{
-    font-size:10px;
-    font-weight:600;
-    color:var(--text-tertiary);
-    letter-spacing:0.8px;
-    text-transform:uppercase;
-    transition:transform 0.3s ease;
-    display:inline-block;
-    width:fit-content;
-  }
-  .project-card:hover .project-tag{
-    transform:translateX(4px);
-  }
-  .project-title{
-    font-size:20px;
-    font-weight:600;
-    letter-spacing:-0.3px;
-    color:var(--text);
-    line-height:1.2;
-    transition:transform 0.3s ease;
-  }
-  .project-card:hover .project-title{
-    transform:translateX(6px);
-  }
-  .company{
-    font-size:13px;
-    color:var(--text-tertiary);
-    font-weight:500;
-    transition:transform 0.3s ease;
-  }
-  .project-card:hover .company{
-    transform:translateX(8px);
-  }
-  .project-description{
-    font-size:14px;
-    color:var(--text-secondary);
-    line-height:1.6;
-    margin-top:4px;
-  }
-  .project-meta{
-    display:flex;
-    gap:24px;
-    margin-top:8px;
-    opacity:0.8;
-    transition:opacity 0.3s ease;
-  }
-  .project-card:hover .project-meta{
-    opacity:1;
-  }
-  .meta-item{
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-  }
-  .meta-label{
-    font-size:9px;
-    font-weight:600;
-    color:var(--text-tertiary);
-    text-transform:uppercase;
-    letter-spacing:0.8px;
-  }
-  .meta-value{
-    font-size:12px;
-    color:var(--text-secondary);
-    line-height:1.5;
-  }
-  .view-project-btn{
-    font-size:13px;
-    font-weight:500;
-    color:var(--accent);
-    margin-top:8px;
-    display:inline-flex;
-    align-items:center;
-    gap:4px;
-    transition:gap 0.3s ease, transform 0.3s ease;
-    width:fit-content;
-  }
-  .project-card:hover .view-project-btn{
-    gap:8px;
-    transform:translateX(4px);
-  }
+.project-card:hover::before {
+    opacity: 1;
+}
 
-  /* PARALLAX SCROLL EFFECTS */
-  .parallax-slow{
-    transition:transform 0.1s ease-out;
-  }
-  .parallax-fast{
-    transition:transform 0.1s ease-out;
-  }
+.project-card:hover {
+    transform: translateX(12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border-color: var(--text-tertiary);
+}
 
-  /* POPUP */
-  .popup-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.3);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:10000;
-    opacity:0;
-    transition:opacity 0.3s ease;
-  }
-  .popup-overlay.show{
-    display:flex;
-    opacity:1;
-  }
-  .popup{
-    background:var(--card-bg);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:40px;
-    max-width:360px;
-    width:100%;
-    text-align:center;
-    box-shadow:0 20px 60px rgba(0,0,0,0.2);
-    transform:scale(0.95);
-    transition:transform 0.3s ease;
-  }
-  .popup-overlay.show .popup{
-    transform:scale(1);
-  }
-  .popup h3{
-    font-size:24px;
-    font-weight:600;
-    margin-bottom:28px;
-    letter-spacing:-0.3px;
-    color:var(--text);
-  }
-  .popup a{
-    display:block;
-    color:var(--text);
-    text-decoration:none;
-    font-size:14px;
-    font-weight:400;
-    padding:14px;
-    background:var(--hover-bg);
-    border:1px solid var(--border);
-    border-radius:8px;
-    margin-bottom:10px;
-    transition:all 0.2s ease;
-  }
-  .popup a:hover{
-    background:var(--border);
-    transform:translateY(-2px) scale(1.02);
-  }
+[data-theme="dark"] .project-card:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
 
-  /* CURSOR EFFECT */
-  .cursor-glow{
-    position:fixed;
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%);
-    pointer-events:none;
-    z-index:9999;
-    transition:transform 0.2s ease;
-    transform:translate(-50%, -50%);
-  }
-  [data-theme="dark"] .cursor-glow{
-    background:radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-  }
+/* COMPACT LAYOUT */
+.project-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding: 28px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+}
 
-  /* RESPONSIVE */
-  @media (max-width:768px){
-    main{padding-left:20px;padding-right:20px;}
-    .hero{padding-top:40px;margin-bottom:100px;}
-    .hero h1{font-size:40px;}
-    .hero-subtitle{font-size:16px;}
-    .project-content{
-      grid-template-columns:1fr;
-      gap:20px;
+.project-image {
+    width: 200px;
+    height: 200px;
+    background: var(--hover-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.project-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, var(--hover-bg) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.project-card:hover .project-image::after {
+    opacity: 0.5;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.project-tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    width: fit-content;
+}
+
+.project-card:hover .project-tag {
+    transform: translateX(4px);
+}
+
+.project-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: var(--text);
+    line-height: 1.2;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-title {
+    transform: translateX(6px);
+}
+
+.company {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .company {
+    transform: translateX(8px);
+}
+
+.project-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 4px;
+}
+
+.project-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-meta {
+    opacity: 1;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.meta-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.meta-value {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.view-project-btn {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.3s ease, transform 0.3s ease;
+    width: fit-content;
+}
+
+.project-card:hover .view-project-btn {
+    gap: 8px;
+    transform: translateX(4px);
+}
+
+/* PARALLAX SCROLL EFFECTS */
+.parallax-slow {
+    transition: transform 0.1s ease-out;
+}
+
+.parallax-fast {
+    transition: transform 0.1s ease-out;
+}
+
+/* POPUP */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.popup {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.popup-overlay.show .popup {
+    transform: scale(1);
+}
+
+.popup h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+}
+
+.popup a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 14px;
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.popup a:hover {
+    background: var(--border);
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* CURSOR EFFECT */
+.cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease;
+    transform: translate(-50%, -50%);
+}
+
+[data-theme="dark"] .cursor-glow {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+}
+
+/* RESPONSIVE */
+@media (max-width:768px) {
+    main {
+        padding-left: 20px;
+        padding-right: 20px;
     }
-    .project-image{
-      width:100%;
-      height:180px;
-    }
-    .project-meta{
-      flex-direction:column;
-      gap:12px;
-    }
-    .nav-links{gap:20px;font-size:12px;}
-    .social-icons{display:none;}
-    .header-content{padding:0 20px;}
-    
-    body::before{
-      display:none;
-    }
-  }
-  @media (max-width:480px){
-    .hero h1{font-size:32px;}
-    .projects-header h2{font-size:28px;}
-    .project-content{padding:20px;}
-  }
-  </style>
-  </head>
-  <body>
 
-  <div class="cursor-glow" id="cursorGlow"></div>
+    .hero {
+        padding-top: 40px;
+        margin-bottom: 100px;
+    }
 
-  <header>
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .project-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-image {
+        width: 100%;
+        height: 180px;
+    }
+
+    .project-meta {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 20px;
+        font-size: 12px;
+    }
+
+    .social-icons {
+        display: none;
+    }
+
+    .header-content {
+        padding: 0 20px;
+    }
+
+    body::before {
+        display: none;
+    }
+}
+
+@media (max-width:480px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .projects-header h2 {
+        font-size: 28px;
+    }
+
+    .project-content {
+        padding: 20px;
+    }
+}
+/* --- END OF STYLES --- */
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<audio id="hoverSound" preload="auto">
+    <source src="mouse-click-117076.mp3" type="audio/mpeg"> 
+    Your browser does not support the audio element.
+</audio>
+
+
+<header>
     <div class="header-content">
-      <div class="logo">BS</div>
-      <nav class="nav-links">
-        <a href="https://amazing-journey-037694.framer.app/about" target="_blank">About</a>
-        <a href="#work">Work</a>
-        <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">Blog</a>
-        <div class="social-icons">
-          <a href="https://twitter.com" target="_blank">𝕏</a>
-          <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">in</a>
-          <a href="mailto:beconfident456@gmail.com">@</a>
-          <div class="theme-toggle" id="themeToggle">
-            <span class="theme-icon">☀</span>
-          </div>
-        </div>
-      </nav>
+        <div class="logo">BS</div>
+        <nav class="nav-links">
+            <a href="https://amazing-journey-037694.framer.app/about" target="_blank">About</a>
+            <a href="#work">Work</a>
+            <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">Blog</a>
+            <div class="social-icons">
+                <a href="https://twitter.com" target="_blank">𝕏</a>
+                <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">in</a>
+                <a href="mailto:beconfident456@gmail.com">@</a>
+                <div class="theme-toggle" id="themeToggle">
+                    <span class="theme-icon">☀</span>
+                </div>
+            </div>
+        </nav>
     </div>
-  </header>
+</header>
 
-  <main>
+<main>
 
 
-
-    
     <section class="hero parallax-slow">
-      <h1>Bharath Salla</h1>
-      <div class="hero-subtitle">Senior Product designer — Publicis Sapient</div>
-      
-      <div class="hero-bio">
-        <p>Hi there! I'm a Senior Product Designer with 7+ years building B2B tools, analytics platforms, and enterprise workflows across fintech, healthcare, and telecom. I specialize in untangling complex systems—turning rigid processes, dense data tables, and multi-step operations into interfaces that teams actually want to use.</p>
-        <p>When I'm not immersed in my projects, I'm out exploring — attending UX conferences, meeting designers, traveling to new places, and sharing ideas through Medium articles on UX and emerging tech. I believe growth happens through people, learning, and constant curiosity!</p>
-      </div>
+        <h1>Bharath Salla</h1>
+        <div class="hero-subtitle">Senior Product designer — Publicis Sapient</div>
+
+        <div class="hero-bio">
+            <p>Hi there! I'm a Senior Product Designer with 7+ years building B2B tools, analytics platforms, and enterprise workflows across fintech, healthcare, and telecom. I specialize in untangling complex systems—turning rigid processes, dense data tables, and multi-step operations into interfaces that teams actually want to use.</p>
+            <p>When I'm not immersed in my projects, I'm out exploring — attending UX conferences, meeting designers, traveling to new places, and sharing ideas through Medium articles on UX and emerging tech. I believe growth happens through people, learning, and constant curiosity!</p>
+        </div>
     </section>
 
     <section id="work" class="parallax-fast">
-      <div class="projects-header">
-        <h2>Latest Projects</h2>
-        <div class="projects-divider"></div>
-      </div>
-      
-      <div class="projects-list">
-        
-        <a href="https://pitch.com/v/verizon-br8ike" target="_blank" class="project-card">
-          <div class="project-content">
-            <div class="project-image">
-              <img src="veri.jpeg" alt="Verizon project">
-            </div>
-            <div class="project-info">
-              <div class="project-tag">Ground-up Rebuild</div>
-              <div class="project-title">B2B Enterprise Software</div>
-              <div class="company">VERIZON</div>
-              <p class="project-description">Cut through Verizon's tangled order-management maze and rebuilt it into a clear, real-time system that exposes stuck orders and accelerates fixes across regions.</p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <div class="meta-label">Skills</div>
-                  <div class="meta-value">User Research · Data Analytics · Data Visualization · Interaction Design</div>
-                </div>
-                <div class="meta-item">
-                  <div class="meta-label">Tech</div>
-                  <div class="meta-value">Design System · Figma · REST API · Real-time Dashboards</div>
-                </div>
-              </div>
-              <span class="view-project-btn">View Project →</span>
-            </div>
-          </div>
-        </a>
+        <div class="projects-header">
+            <h2>Latest Projects</h2>
+            <div class="projects-divider"></div>
+        </div>
 
-        <a href="https://pitch.com/v/hdfc-558t68" target="_blank" class="project-card">
-          <div class="project-content">
-            <div class="project-image">
-              <img src="hdfc.jpeg" alt="HDFC Project">
-            </div>
-            <div class="project-info">
-              <div class="project-tag">Core Overhaul</div>
-              <div class="project-title">Fintech & Digital Banking</div>
-              <div class="company">HDFC Bank</div>
-              <p class="project-description">Cut through HDFC Bank's tangled transfer flow and rebuilt it as a simple 3-step experience used by 120 million customers across APAC.</p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <div class="meta-label">Skills</div>
-                  <div class="meta-value">Competitive analysis · Journey mapping · Empathy mapping · Interaction Design</div>
+        <div class="projects-list">
+            <a href="https://pitch.com/v/verizon-br8ike" target="_blank" class="project-card">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="veri.jpeg" alt="Verizon project">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tag">Ground-up Rebuild</div>
+                        <div class="project-title">B2B Enterprise Software</div>
+                        <div class="company">VERIZON</div>
+                        <p class="project-description">Cut through Verizon's tangled order-management maze and rebuilt it into a clear, real-time system that exposes stuck orders and accelerates fixes across regions.</p>
+                        <div class="project-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">Skills</div>
+                                <div class="meta-value">User Research · Data Analytics · Data Visualization · Interaction Design</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Tech</div>
+                                <div class="meta-value">Design System · Figma · REST API · Real-time Dashboards</div>
+                            </div>
+                        </div>
+                        <span class="view-project-btn">View Project →</span>
+                    </div>
                 </div>
-                <div class="meta-item">
-                  <div class="meta-label">Tech</div>
-                  <div class="meta-value">Hotjar · Google Analytics · Zendesk · Agile Tools</div>
-                </div>
-              </div>
-              <span class="view-project-btn">View Project →</span>
-            </div>
-          </div>
-        </a>
+            </a>
 
-        <a href="https://pitch.com/v/myportfolio-uun6h6" target="_blank" class="project-card">
-          <div class="project-content">
-            <div class="project-image">
-              <img src="uhc.jpeg" alt="UHC Project">
-            </div>
-            <div class="project-info">
-              <div class="project-tag">New Product</div>
-              <div class="project-title">Healthcare AI & Claims</div>
-              <div class="company">UnitedHealth Group</div>
-              <p class="project-description">Cut through UHC's overwhelming EOB clutter with instant AI summaries that turn 8-page documents into seconds of clarity.</p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <div class="meta-label">Skills</div>
-                  <div class="meta-value">User Research · Conversational Design · Information Architecture · Usability Testing</div>
+            <a href="https://pitch.com/v/hdfc-558t68" target="_blank" class="project-card">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="hdfc.jpeg" alt="HDFC Project">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tag">Core Overhaul</div>
+                        <div class="project-title">Fintech & Digital Banking</div>
+                        <div class="company">HDFC Bank</div>
+                        <p class="project-description">Cut through HDFC Bank's tangled transfer flow and rebuilt it as a simple 3-step experience used by 120 million customers across APAC.</p>
+                        <div class="project-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">Skills</div>
+                                <div class="meta-value">Competitive analysis · Journey mapping · Empathy mapping · Interaction Design</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Tech</div>
+                                <div class="meta-value">Hotjar · Google Analytics · Zendesk · Agile Tools</div>
+                            </div>
+                        </div>
+                        <span class="view-project-btn">View Project →</span>
+                    </div>
                 </div>
-                <div class="meta-item">
-                  <div class="meta-label">Tech</div>
-                  <div class="meta-value">Generative AI · Natural Language Processing · Machine Learning</div>
-                </div>
-              </div>
-              <span class="view-project-btn">View Project →</span>
-            </div>
-          </div>
-        </a>
+            </a>
 
-        <a href="https://pitch.com/v/clarisights-46vwyy" target="_blank" class="project-card">
-          <div class="project-content">
-            <div class="project-image">
-              <img src="clarisights.jpeg" alt="Clarisights Project">
-            </div>
-            <div class="project-info">
-              <div class="project-tag">Feature Revamp</div>
-              <div class="project-title">Marketing Analytics</div>
-              <div class="company">Clarisights</div>
-              <p class="project-description">Saved teams 11.7 hours/week (≈76 working days/year) and delivered a 5× ROI for customers like Delivery Hero, HelloFresh, Meesho, AJIO, and BigBasket.</p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <div class="meta-label">Skills</div>
-                  <div class="meta-value">Research · Information Architecture · Prototyping · Usability Testing</div>
+            <a href="https://pitch.com/v/myportfolio-uun6h6" target="_blank" class="project-card">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="uhc.jpeg" alt="UHC Project">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tag">New Product</div>
+                        <div class="project-title">Healthcare AI & Claims</div>
+                        <div class="company">UnitedHealth Group</div>
+                        <p class="project-description">Cut through UHC's overwhelming EOB clutter with instant AI summaries that turn 8-page documents into seconds of clarity.</p>
+                        <div class="project-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">Skills</div>
+                                <div class="meta-value">User Research · Conversational Design · Information Architecture · Usability Testing</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Tech</div>
+                                <div class="meta-value">Generative AI · Natural Language Processing · Machine Learning</div>
+                            </div>
+                        </div>
+                        <span class="view-project-btn">View Project →</span>
+                    </div>
                 </div>
-                <div class="meta-item">
-                  <div class="meta-label">Tech</div>
-                  <div class="meta-value">Figma · Analytics · Collaboration Platforms</div>
-                </div>
-              </div>
-              <span class="view-project-btn">View Project →</span>
-            </div>
-          </div>
-        </a>
+            </a>
 
-        <a href="https://pitch.com/v/designing-conversation-flow-builder-v5dhcb" target="_blank" class="project-card">
-          <div class="project-content">
-            <div class="project-image">
-              <img src="smartbeings.jpeg" alt="SmartBeings Project">
-            </div>
-            <div class="project-info">
-              <div class="project-tag">Platform Launch</div>
-              <div class="project-title">Voice AI Platform</div>
-              <div class="company">SmartBeings</div>
-              <p class="project-description">Designed Smartbeings' enterprise conversation builder—turning complex conversational logic into simple, visual, drag-and-drop workflows.</p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <div class="meta-label">Skills</div>
-                  <div class="meta-value">Conversation Design · Workflow Design · Information Architecture · Prototyping</div>
+            <a href="https://pitch.com/v/clarisights-46vwyy" target="_blank" class="project-card">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="clarisights.jpeg" alt="Clarisights Project">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tag">Feature Revamp</div>
+                        <div class="project-title">Marketing Analytics</div>
+                        <div class="company">Clarisights</div>
+                        <p class="project-description">Saved teams 11.7 hours/week (≈76 working days/year) and delivered a 5× ROI for customers like Delivery Hero, HelloFresh, Meesho, AJIO, and BigBasket.</p>
+                        <div class="project-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">Skills</div>
+                                <div class="meta-value">Research · Information Architecture · Prototyping · Usability Testing</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Tech</div>
+                                <div class="meta-value">Figma · Analytics · Collaboration Platforms</div>
+                            </div>
+                        </div>
+                        <span class="view-project-btn">View Project →</span>
+                    </div>
                 </div>
-                <div class="meta-item">
-                  <div class="meta-label">Tech</div>
-                  <div class="meta-value">GAI & Voice Tech · LLM · NLP</div>
-                </div>
-              </div>
-              <span class="view-project-btn">View Project →</span>
-            </div>
-          </div>
-        </a>
+            </a>
 
-        <a href="https://pitch.com/v/design-system-r9sqp8" target="_blank" class="project-card">
-          <div class="project-content">
-            <div class="project-image">
-              <img src="design.jpeg" alt="Bank Carabao">
-            </div>
-            <div class="project-info">
-              <div class="project-tag">Design System Launch</div>
-              <div class="project-title">Bank Carabao Design System</div>
-              <div class="company">Bank of Carabao</div>
-              <p class="project-description">A multi-theme atomic design system created for the bank's new mobile app. Reduces design delivery time by 50% and enables consistent UI at scale.</p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <div class="meta-label">Skills</div>
-                  <div class="meta-value">Design System · Tokens & Variables · Components · Theming · Documentation</div>
+            <a href="https://pitch.com/v/designing-conversation-flow-builder-v5dhcb" target="_blank" class="project-card">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="smartbeings.jpeg" alt="SmartBeings Project">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tag">Platform Launch</div>
+                        <div class="project-title">Voice AI Platform</div>
+                        <div class="company">SmartBeings</div>
+                        <p class="project-description">Designed Smartbeings' enterprise conversation builder—turning complex conversational logic into simple, visual, drag-and-drop workflows.</p>
+                        <div class="project-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">Skills</div>
+                                <div class="meta-value">Conversation Design · Workflow Design · Information Architecture · Prototyping</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Tech</div>
+                                <div class="meta-value">GAI & Voice Tech · LLM · NLP</div>
+                            </div>
+                        </div>
+                        <span class="view-project-btn">View Project →</span>
+                    </div>
                 </div>
-                <div class="meta-item">
-                  <div class="meta-label">Tech</div>
-                  <div class="meta-value">Figma Variables · Atomic Library · Responsive Grid · Dev Mode</div>
-                </div>
-              </div>
-              <span class="view-project-btn">View Project →</span>
-            </div>
-          </div>
-        </a>
+            </a>
 
-      </div>
+            <a href="https://pitch.com/v/design-system-r9sqp8" target="_blank" class="project-card">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="design.jpeg" alt="Bank Carabao">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tag">Design System Launch</div>
+                        <div class="project-title">Bank Carabao Design System</div>
+                        <div class="company">Bank of Carabao</div>
+                        <p class="project-description">A multi-theme atomic design system created for the bank's new mobile app. Reduces design delivery time by 50% and enables consistent UI at scale.</p>
+                        <div class="project-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">Skills</div>
+                                <div class="meta-value">Design System · Tokens & Variables · Components · Theming · Documentation</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Tech</div>
+                                <div class="meta-value">Figma Variables · Atomic Library · Responsive Grid · Dev Mode</div>
+                            </div>
+                        </div>
+                        <span class="view-project-btn">View Project →</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
     </section>
 
-  </main>
+</main>
 
-  <div class="popup-overlay" id="popupOverlay">
+<div class="popup-overlay" id="popupOverlay">
     <div class="popup">
-      <h3>Get in Touch</h3>
-      <a href="mailto:beconfident456@gmail.com">beconfident456@gmail.com</a>
-      <a href="tel:+918247679545">+91 82476 79545</a>
-      <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">LinkedIn Profile</a>
+        <h3>Get in Touch</h3>
+        <a href="mailto:beconfident456@gmail.com">beconfident456@gmail.com</a>
+        <a href="tel:+918247679545">+91 82476 79545</a>
+        <a href="https://www.linkedin.com/in/bharathsalla/" target="_blank">LinkedIn Profile</a>
     </div>
-  </div>
+</div>
 
-  <script>
-  // Theme Toggle
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = themeToggle.querySelector('.theme-icon');
-  const html = document.documentElement;
+<script>
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('.theme-icon');
+const html = document.documentElement;
 
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  html.setAttribute('data-theme', savedTheme);
-  themeIcon.textContent = savedTheme === 'dark' ? '☾' : '☀';
+const savedTheme = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', savedTheme);
+themeIcon.textContent = savedTheme === 'dark' ? '☾' : '☀';
 
-  themeToggle.addEventListener('click', () => {
+themeToggle.addEventListener('click', () => {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     themeIcon.textContent = newTheme === 'dark' ? '☾' : '☀';
-  });
+});
 
-  // Mouse Gradient Effect
-  let mouseX = 0, mouseY = 0;
+// Mouse Gradient Effect (Parallax & Glow)
+let mouseX = 0,
+    mouseY = 0;
 
-  document.addEventListener('mousemove', (e) => {
+document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     document.body.classList.add('mouse-active');
-    
-    const gradient = document.querySelector('body::before');
     document.body.style.setProperty('--mouse-x', mouseX + 'px');
     document.body.style.setProperty('--mouse-y', mouseY + 'px');
-  });
+});
 
-  function animateGradient() {
-    const bodyBefore = document.body;
-    if (bodyBefore) {
-      bodyBefore.style.backgroundPosition = `${mouseX - 300}px ${mouseY - 300}px`;
-    }
+function animateGradient() {
     requestAnimationFrame(animateGradient);
-  }
-  animateGradient();
+}
+animateGradient();
 
-  // Update gradient position
-  setInterval(() => {
+setInterval(() => {
     if (document.body.classList.contains('mouse-active')) {
-      const style = document.createElement('style');
-      style.textContent = `body::before { left: ${mouseX - 300}px !important; top: ${mouseY - 300}px !important; }`;
-      document.head.appendChild(style);
-      setTimeout(() => style.remove(), 100);
+        const style = document.createElement('style');
+        style.textContent = `body::before { left: ${mouseX - 300}px !important; top: ${mouseY - 300}px !important; }`;
+        document.head.appendChild(style);
+        setTimeout(() => style.remove(), 100);
     }
-  }, 50);
+}, 50);
 
-  // Cursor Glow Effect
-  const cursorGlow = document.getElementById('cursorGlow');
-  let glowX = 0, glowY = 0;
+const cursorGlow = document.getElementById('cursorGlow');
+let glowX = 0,
+    glowY = 0;
 
-  function animateCursor() {
+function animateCursor() {
     glowX += (mouseX - glowX) * 0.1;
     glowY += (mouseY - glowY) * 0.1;
     cursorGlow.style.left = glowX + 'px';
     cursorGlow.style.top = glowY + 'px';
     requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
+}
+animateCursor();
 
-  // Parallax Scroll Effect
-  let lastScrollY = window.scrollY;
+let lastScrollY = window.scrollY;
 
-  window.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    
+
     document.querySelectorAll('.parallax-slow').forEach(el => {
-      const speed = 0.3;
-      el.style.transform = `translateY(${-scrollY * speed}px)`;
+        const speed = 0.3;
+        el.style.transform = `translateY(${-scrollY * speed}px)`;
     });
-    
+
     document.querySelectorAll('.parallax-fast').forEach(el => {
-      const speed = 0.1;
-      el.style.
+        const speed = 0.1;
+        el.style.transform = `translateY(${-scrollY * speed}px)`;
+    });
+});
+
+// 
+// **************************************************
+// ** CRITICAL STEP: JavaScript Hover Listener (Volume Adjusted) **
+// **************************************************
+// This section finds all project cards and attaches the sound effect logic.
+// 
+const projectCards = document.querySelectorAll('.project-card');
+const hoverSound = document.getElementById('hoverSound');
+
+projectCards.forEach(card => {
+    // When the mouse enters the card area
+    card.addEventListener('mouseenter', () => {
+        
+        // --- ADDED: Reduce volume for a softer, less noisy click ---
+        hoverSound.volume = 0.3; 
+        
+        // 1. Set the audio time to 0 to make sure it plays from the beginning 
+        //    every time, even if you quickly hover over multiple cards.
+        hoverSound.currentTime = 0; 
+        
+        // 2. Play the sound.
+        hoverSound.play().catch(error => {
+            // Browsers often block autoplay until a user interacts, this catches that error.
+            console.log("Audio playback initiated, but may be restricted by browser policy.", error);
+        });
+    });
+});
+// 
+// **************************************************
+// ** END OF HOVER LISTENER **
+// **************************************************
+// 
+
+</script>
+</body>
+</html>
